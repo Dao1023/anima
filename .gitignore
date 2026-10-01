@@ -5,3 +5,6 @@ dist/
 __pycache__/
 pytest-of*/
 *.tmp
+scripts/master.json
+scripts/.frame*.jpg
+scripts/face-*.jpg

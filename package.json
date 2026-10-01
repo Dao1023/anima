@@ -1,0 +1,17 @@
+{
+  "name": "anima",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "face": "node scripts/sense-face.mjs"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
+    "@tensorflow/tfjs-backend-cpu": "^4.22.0",
+    "@tensorflow/tfjs-backend-wasm": "^4.22.0",
+    "@tensorflow/tfjs-converter": "^4.22.0",
+    "@tensorflow/tfjs-core": "^4.22.0",
+    "@vladmandic/human": "^3.3.6",
+    "jpeg-js": "^0.4.4"
+  }
+}
