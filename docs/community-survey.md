@@ -58,7 +58,7 @@
 
 | 阶段 | 动作 | 验收标准 |
 |---|---|---|
-| **0 保险** | 装 dsh-undo-savepoint;把 data/ 从消息级撤销跟踪排除 | SAFE MODE 可用 |
+| **0 保险** ✅ | 已完成:dsh-undo-savepoint 装入 desktop profile(重启生效)。排除方案升级:阶段 3 把档案库移出会话工作区(~/.anima/),消息级回滚天然不可及 | SAFE MODE 可用 |
 | **1 宿主** | 装 dsh-desktop,日常使用迁过去 | 关窗后任务照跑;托盘常驻过夜 |
 | **2 闹钟** | 装 dsh-cron,开 coldWake | 女仆会话被定时唤醒并应答;错过合并语义实测 |
 | **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
