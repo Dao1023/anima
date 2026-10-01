@@ -59,14 +59,17 @@
 | 阶段 | 动作 | 验收标准 |
 |---|---|---|
 | **0 保险** ✅ | **天生满足**:官方 harness 内置 undo-savepoint(本会话实测 undo_list 可用,快照自 10-01 起存在)。手动安装的一份因可能造成 bundles 重复条目已回退。档案保护:阶段 3 把库放 ~/.anima/(工作区外) | SAFE MODE 可用 |
-| **0.5 开发规范** ✅ | 已读一手官方文档(见 dev-spec.md)。纠正:开发迭代=源码 checkout+`--patch` overlay+官方 HMR,与市场热挂载(安装通道)无关;工具规范/能力分层/cron 官方模式均已消化 | dev-spec.md 为准 |
-| **1 宿主** | 装 dsh-desktop,日常使用迁过去 | 关窗后任务照跑;托盘常驻过夜 |
-| **2 闹钟** | 本机 0.2.0-rc.2 无原生 cron(实测 dump 289 条目);装 dsh-cron 或按官方 cron 模式(followup/inject)自研 | 女仆会话被定时唤醒并应答;错过合并语义实测 |
-| **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
+| **0.5 开发规范** ✅ | 已读一手官方文档(见 [dev-spec.md](dev-spec.md))。纠正:开发迭代=源码 checkout+`--patch` overlay+官方 HMR,与市场热挂载(安装通道)无关;工具规范/能力分层/cron 官方模式均已消化 | dev-spec.md 为准 |
+| **0.7 生态调查** ✅ | 见 [ecosystem.md](ecosystem.md) + [ecosystem-catalog.md](ecosystem-catalog.md):六层框架/七生态位/Top200 全图鉴/dsh-std 验证。新知:官方 `packages/schedule` 在路上;lowtide(错峰委派)/run2skill(习惯→技能)/auto-review(审批护栏)三个参考物种;情绪价值带=装机基本盘 | 200 物种全录 |
+| **1 宿主** | 先观察现官方客户端关窗是否托盘常驻;否 → 装 [dsh-desktop](https://github.com/bruc3van/dsh-desktop) | 关窗后任务照跑;托盘常驻过夜 |
+| **1.5 源码 checkout** | clone deepseek-harness(`--patch`+HMR 的物理前提) | `pnpm dsh web --patch` 能起 |
+| **2 闹钟** | **先评估再装**:升级后本机是否已有原生 schedule;无 → 装 dsh-cron(冷门器官,留官方迁移缝) | 女仆会话被定时唤醒并应答;错过合并实测 |
+| **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 SQLite 读事务 + actions 校验;**档案放 ~/.anima/**(工作区外,回滚够不着) | 会话内模型能查档案、改任务、重排闹钟;三层测试法(纯函数单测→契约→实机) |
 | **4 灵魂** | task-brain skill 改版:闹钟命令换成 cron 工具,档案命令换成原生工具 | 一次唤醒内完成"读字条→查档案→判定→说话→重排" |
 | **5 触达** | dsh-im 微信通道 + Bark 兜底 | 手机收到女仆的话,回复进同一会话 |
-| **6 记忆** | dsh-mnemon + 档案 provider 桥 | 跨唤醒画像连续;档案事实可被召回 |
-| **7 人格** | 人格变量(MVU式)入 SQLite:可爱/严肃/好感度,由任务完成情况驱动 | 连续敷衍→严肃模式实测触发 |
+| **6 记忆** | dsh-mnemon + 档案 provider 桥(**13 物种混战位,provider 化留切换缝**) | 跨唤醒画像连续;档案事实可被召回 |
+| **7 人格** ⬆ | **优先级上调**(生态实证:情绪价值=装机基本盘)。人格变量入 SQLite:可爱/严肃/好感度,由任务完成情况驱动;借 dsh-pet 的 voice.json 数据包范式 + tavern 的 MVU 变量;解剖 lowtide(节律)与 run2skill(沉淀) | 连续敷衍→严肃模式实测触发 |
+| **8 自治护栏**(新增) | 女仆长时间无人值守前的安全层:参考 auto-review(第二模型审批)、approval-gate(Flash 预判) | 危险操作必经门,普通操作免打扰 |
 
 **风险清单**:rc 阶段 API 有破坏性变更(依赖锁 `>=0.1.2-rc.1 <0.2.0`);Windows 是生态第一痛点;dsh-im 微信走备案 AI 卡片,推送频率受微信管控;插件无第一类持久化存储(自带 SQLite 反而干净);dsh-desktop 每月更新一次断点可接受。
 
