@@ -17,25 +17,21 @@ const WASM = path.join(ROOT, 'node_modules', '@tensorflow', 'tfjs-backend-wasm',
 const CAMERA = 'FHD Camera';
 
 function grabFrame(out) {
-  // 摄像头独占:先杀残留 ffmpeg(僵尸进程锁死设备),再连拍 8 帧取最后一帧(自动曝光需要几帧)
-  try { execFileSync('taskkill', ['/IM', 'ffmpeg.exe', '/F'], { stdio: 'pipe' }); } catch { /* 无残留 */ }
-  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
   const seq = out.replace(/\.jpg$/, '') + '%02d.jpg';
+  let ffErr = '';
   try {
     execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-f', 'dshow',
-      '-rtbufsize', '100M', '-i', `video=${CAMERA}`, '-frames:v', '8', '-y', seq],
+      '-rtbufsize', '100M', '-i', 'video=' + CAMERA, '-frames:v', '8', '-y', seq],
       { timeout: 30000, stdio: 'pipe' });
-    const dir = path.dirname(out), base = path.basename(out, '.jpg');
-    const frames = fs.readdirSync(dir).filter(f => f.startsWith(base) && /^\d+\.jpg$/.test(f.slice(base.length))).sort();
-    if (!frames.length) return false;
-    const last = frames[frames.length - 1];
-    for (const f of frames) {
-      if (f === last) continue;
-      fs.unlinkSync(path.join(dir, f));
-    }
-    if (last !== base + '.jpg') fs.renameSync(path.join(dir, last), out);
-    return fs.existsSync(out) && fs.statSync(out).size > 1000;
-  } catch { return false; }
+  } catch (e) { ffErr = ((e.stderr || '') + ' ' + (e.message || '')).toString().slice(-300); }
+  const dir = path.dirname(out), base = path.basename(out, '.jpg');
+  let frames = [];
+  try { frames = fs.readdirSync(dir).filter(f => f.startsWith(base) && /^\d+\.jpg$/.test(f.slice(base.length))).sort(); } catch { }
+  if (!frames.length) return { ok: false, ffErr, killErr };
+  const last = frames[frames.length - 1];
+  for (const f of frames) { if (f !== last) { try { fs.unlinkSync(path.join(dir, f)); } catch { } } }
+  if (last !== base + '.jpg') fs.renameSync(path.join(dir, last), out);
+  return { ok: fs.existsSync(out) && fs.statSync(out).size > 1000 };
 }
 
 function luminance(file) {
@@ -69,7 +65,7 @@ if (argv[0] === '--save') {
 }
 if (argv[0] === '--image') {
   fs.copyFileSync(argv[1], tmp); // 调试:分析指定图片,不抓摄像头
-} else if (!grabFrame(tmp)) { console.log(JSON.stringify({ face: 'camera_unavailable' })); process.exit(0); }
+} else if (!grabFrame(tmp).ok) { console.log(JSON.stringify({ face: 'camera_unavailable' })); process.exit(0); }
 
 const humanMod = await import(url.pathToFileURL(path.join(ROOT, 'node_modules', '@vladmandic', 'human', 'dist', 'human.node-wasm.js')));
 // 本 node 的 fetch 不支持 file: scheme → 打补丁:file: 走 fs
@@ -109,7 +105,7 @@ if (argv[0] === 'enroll') {
   const embs = [];
   for (let n = 0; n < 8; n++) {
     if (n > 0) await new Promise(r => setTimeout(r, 800));
-    if (!grabFrame(tmp)) continue;
+    if (!grabFrame(tmp).ok) continue;
     const res = await detectFrame();
     const f = res.face.find(x => x.embedding?.length);
     if (f) embs.push(f.embedding);
