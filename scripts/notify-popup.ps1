@@ -65,7 +65,7 @@ if ($Gif -and (Test-Path $Gif)) {
     $img.Source = $frames[0]
     $script:frameIdx = 0
     $anim = New-Object System.Windows.Threading.DispatcherTimer
-    $anim.Interval = [TimeSpan]::FromMilliseconds(50)
+    $anim.Interval = [TimeSpan]::FromMilliseconds(33)
     $anim.Add_Tick({
       $script:frameIdx = ($script:frameIdx + 1) % $frames.Count
       $img.Source = $frames[$script:frameIdx]
@@ -91,17 +91,15 @@ $window.Add_Loaded({
 # 点一下就关(不打扰)
 $window.Add_MouseDown({ $window.Close() })
 
-$timer = New-Object System.Windows.Threading.DispatcherTimer
-$timer.Interval = [TimeSpan]::FromSeconds($Seconds)
-$timer.Add_Tick({ $window.Close(); $timer.Stop() })
-
+# 原生消息循环全速泵帧(手摇泵 sleep+Invoke 有开销,帧率上不去)
 $window.Show()
-$timer.Start()
-$dispatcher = [System.Windows.Threading.Dispatcher]::CurrentDispatcher
-$end = (Get-Date).AddSeconds($Seconds + 5)
-while ((Get-Date) -lt $end -and $window.IsVisible) {
-  # 高频泵消息(20ms),否则 DispatcherTimer 被卡在 ~10fps
-  $dispatcher.Invoke([Action]{}, [System.Windows.Threading.DispatcherPriority]::Background)
-  Start-Sleep -Milliseconds 20
-}
+
+$autoClose = New-Object System.Windows.Threading.DispatcherTimer
+$autoClose.Interval = [TimeSpan]::FromSeconds($Seconds)
+$autoClose.Add_Tick({ $window.Close() })
+$autoClose.Start()
+
+$app = New-Object System.Windows.Application
+$app.ShutdownMode = 'OnMainWindowClose'
+$null = $app.Run($window)
 Write-Output "popup shown: $Text"
