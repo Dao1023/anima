@@ -1,8 +1,19 @@
 {
   "name": "dsh-anima",
+  "description": "数字生命女仆的档案工具:双驱动任务档案(task_query/task_add/task_done/task_update)直连 ~/.anima/archive.db",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
-  "description": "数字生命女仆的档案工具:双驱动任务库的原生会话内访问",
-  "main": "src/index.ts"
+  "main": "lib/index.js",
+  "files": [
+    "lib/index.js",
+    "cordis.patch.yml"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "dependencies": {
+    "@deepseek-ai/dsh-tools": ">=0.1.2-rc.1 <0.3.0"
+  }
 }
