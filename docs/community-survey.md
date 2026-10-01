@@ -59,9 +59,9 @@
 | 阶段 | 动作 | 验收标准 |
 |---|---|---|
 | **0 保险** ✅ | **天生满足**:官方 harness 内置 undo-savepoint(本会话实测 undo_list 可用,快照自 10-01 起存在)。手动安装的一份因可能造成 bundles 重复条目已回退。档案保护:阶段 3 把库放 ~/.anima/(工作区外) | SAFE MODE 可用 |
-| **0.5 热载认知** ✅ | 实测结论:市场插件热挂载**仅限 web profile**(纯 id/name patch,自动刷新);desktop profile 改动必须重启。→ 插件开发期优先在 web profile 迭代(热载快),定版后同步 desktop | web 里装插件不重启即生效 |
+| **0.5 开发规范** ✅ | 已读一手官方文档(见 dev-spec.md)。纠正:开发迭代=源码 checkout+`--patch` overlay+官方 HMR,与市场热挂载(安装通道)无关;工具规范/能力分层/cron 官方模式均已消化 | dev-spec.md 为准 |
 | **1 宿主** | 装 dsh-desktop,日常使用迁过去 | 关窗后任务照跑;托盘常驻过夜 |
-| **2 闹钟** | 装 dsh-cron,开 coldWake | 女仆会话被定时唤醒并应答;错过合并语义实测 |
+| **2 闹钟** | 本机 0.2.0-rc.2 无原生 cron(实测 dump 289 条目);装 dsh-cron 或按官方 cron 模式(followup/inject)自研 | 女仆会话被定时唤醒并应答;错过合并语义实测 |
 | **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
 | **4 灵魂** | task-brain skill 改版:闹钟命令换成 cron 工具,档案命令换成原生工具 | 一次唤醒内完成"读字条→查档案→判定→说话→重排" |
 | **5 触达** | dsh-im 微信通道 + Bark 兜底 | 手机收到女仆的话,回复进同一会话 |
