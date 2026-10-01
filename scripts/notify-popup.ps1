@@ -12,6 +12,13 @@ param(
 )
 
 $ErrorActionPreference = 'Stop'
+
+# 自藏控制台:弹窗不该带黑框(无论调用方式如何都生效)
+Add-Type -Name Win -Namespace Native -MemberDefinition '
+[DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+[DllImport("kernel32.dll")] public static extern IntPtr GetConsoleWindow();'
+$hwnd = [Native.Win]::GetConsoleWindow()
+if ($hwnd -ne [IntPtr]::Zero) { [Native.Win]::ShowWindow($hwnd, 0) | Out-Null }
 if ($Meme -and -not $Gif) {
   $dir = Join-Path $env:USERPROFILE '.anima\memes'
   $pick = Get-ChildItem $dir -File -ErrorAction SilentlyContinue |
@@ -58,11 +65,11 @@ if ($Gif -and (Test-Path $Gif)) {
   $img.Visibility = 'Visible'
 }
 
-# 右下角,贴任务栏上方
+# 屏幕中上位置,保证看见;Loaded 后用实际尺寸定位
 $window.Add_Loaded({
   $wa = [System.Windows.SystemParameters]::WorkArea
-  $window.Left = $wa.Right - $window.ActualWidth - 24
-  $window.Top = $wa.Bottom - $window.ActualHeight - 24
+  $window.Left = ($wa.Right - $window.ActualWidth) / 2
+  $window.Top = $wa.Top + 80
 })
 # 点一下就关(不打扰)
 $window.Add_MouseDown({ $window.Close() })
