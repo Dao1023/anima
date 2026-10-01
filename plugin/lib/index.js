@@ -17,6 +17,12 @@ export const name = 'dsh-anima';
 export const inject = ['tools'];
 const ARCHIVE_PATH = join(homedir(), '.anima', 'archive.db');
 const DAY = 86400;
+const nowSec = () => Math.floor(Date.now() / 1000);
+/** unix 秒 → 'YYYY-MM-DD HH:MM'(本地时区,面板同款) */
+function fmt(ts) {
+    const d = new Date(ts * 1000), p = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
 /** 打开档案(只读;不存在时报友好错误) */
 function openArchive(readOnly = true) {
     try {
@@ -63,7 +69,38 @@ function endImportance(deadlineSec, nowSec) {
     const remainingDays = Math.max((deadlineSec - nowSec) / 86400, 1e-4);
     return -Math.log(remainingDays);
 }
+/** 幂等迁移:人格变量表(阶段7)。读连接建不了表,独立短连一次。 */
+function migratePersona() {
+    try {
+        const db = openArchive(false);
+        try {
+            db.exec(`
+        CREATE TABLE IF NOT EXISTS persona (
+          key     TEXT PRIMARY KEY,
+          value   TEXT NOT NULL,
+          updated INTEGER NOT NULL
+        );
+        CREATE TABLE IF NOT EXISTS observations (
+          id    INTEGER PRIMARY KEY AUTOINCREMENT,
+          ts    INTEGER NOT NULL,
+          kind  TEXT NOT NULL,
+          text  TEXT NOT NULL
+        );
+      `);
+        }
+        finally {
+            db.close();
+        }
+    }
+    catch { /* 档案库暂时不可写时静默,工具调用时再报错 */ }
+}
+/** 读 persona 变量(缺省给默认值) */
+function getPersona(db, key, def) {
+    const r = db.prepare('SELECT value FROM persona WHERE key = ?').get(key);
+    return r ? Number(r.value) : def;
+}
 export function apply(ctx) {
+    migratePersona();
     ctx.tools.register(defineTool({
         name: 'task_query',
         description: '查询双驱动任务档案。返回按重要性降序排列的活跃任务列表,每条含:标题、驱动类型(start=越久没做越重要/end=越近截止越急)、重要性分数、截止/预期信息、标签。start 驱动的分数>0 表示超期(该做了);end 驱动的分数>0 表示不足一天截止。用于:女仆醒来判断该提什么、主人问"今天有什么事"。',
@@ -128,7 +165,6 @@ export function apply(ctx) {
         },
         async execute(args) {
             const top = Math.min(Math.max(Math.floor(args.top ?? 10), 1), 50);
-            const nowSec = Math.floor(Date.now() / 1000);
             const db = openArchive();
             try {
                 // 主查询: tasks + schedule JOIN
@@ -163,8 +199,8 @@ export function apply(ctx) {
                     const anchor = r.anchor;
                     const expected = r.expected_duration;
                     const imp = r.drive === 'start'
-                        ? startImportance(anchor, expected, nowSec)
-                        : endImportance(deadline, nowSec);
+                        ? startImportance(anchor, expected, nowSec())
+                        : endImportance(deadline, nowSec());
                     const task = {
                         id: r.id,
                         title: r.title,
@@ -178,10 +214,10 @@ export function apply(ctx) {
                         task.note = r.note;
                     if (deadline) {
                         task.deadline = new Date(deadline * 1000).toISOString();
-                        task.remaining_days = Math.round(((deadline - nowSec) / 86400) * 10) / 10;
+                        task.remaining_days = Math.round(((deadline - nowSec()) / 86400) * 10) / 10;
                     }
                     if (r.drive === 'start' && anchor) {
-                        task.days_since_done = Math.round(((nowSec - anchor) / 86400) * 10) / 10;
+                        task.days_since_done = Math.round(((nowSec() - anchor) / 86400) * 10) / 10;
                     }
                     if (expected)
                         task.expected_days = Math.round((expected / 86400) * 10) / 10;
@@ -239,7 +275,6 @@ export function apply(ctx) {
             const priority = args.priority === undefined ? 3 : Math.round(args.priority);
             if (priority < 1 || priority > 5)
                 throw new Error(`priority 必须在 1-5,收到 ${priority}`);
-            const nowSec = Math.floor(Date.now() / 1000);
             const id = randomUUID();
             const isCyclic = args.drive === 'start' ? (args.is_cyclic ?? true) : false;
             // 写前校验:各驱动的必填字段
@@ -252,7 +287,7 @@ export function apply(ctx) {
                     throw new Error('start 驱动任务必须给 expected_days(> 0),如"每 3 天"传 3');
                 }
                 expectedSec = Math.round(args.expected_days * DAY);
-                anchorSec = nowSec; // 新任务从现在开始计时
+                anchorSec = nowSec(); // 新任务从现在开始计时
             }
             else {
                 if (!args.deadline) {
@@ -272,7 +307,7 @@ export function apply(ctx) {
                     db.prepare(`
             INSERT INTO tasks (id, title, note, drive, is_cyclic, priority, status, created, snooze_until)
             VALUES (?, ?, ?, ?, ?, ?, 'active', ?, NULL)
-          `).run(id, title, args.note ?? null, args.drive, isCyclic ? 1 : 0, priority, nowSec);
+          `).run(id, title, args.note ?? null, args.drive, isCyclic ? 1 : 0, priority, nowSec());
                     db.prepare(`
             INSERT INTO schedule (task_id, deadline, anchor, expected_duration, recurrence_interval)
             VALUES (?, ?, ?, ?, ?)
@@ -289,8 +324,8 @@ export function apply(ctx) {
                     throw e;
                 }
                 const imp = args.drive === 'start'
-                    ? startImportance(anchorSec, expectedSec, nowSec)
-                    : endImportance(deadlineSec, nowSec);
+                    ? startImportance(anchorSec, expectedSec, nowSec())
+                    : endImportance(deadlineSec, nowSec());
                 const msg = args.drive === 'start'
                     ? `已添加 start 任务「${title}」,周期 ${args.expected_days} 天${isCyclic ? '(循环)' : ''},重要性从 0 开始随时间增长。`
                     : `已添加 end 任务「${title}」,截止 ${args.deadline}。`;
@@ -334,13 +369,12 @@ export function apply(ctx) {
           `).get(args.id);
                     if (!row)
                         throw new Error(`找不到活跃任务 id=${args.id},先用 task_query 确认`);
-                    const nowSec = Math.floor(Date.now() / 1000);
                     let action = '完成';
                     let extra = '';
                     if (row.drive === 'start' && row.is_cyclic) {
                         // start 周期:同一任务继续活跃,只重置 anchor(V2 语义:做完重新计时)
                         db.prepare(`UPDATE tasks SET snooze_until = NULL WHERE id = ?`).run(args.id);
-                        db.prepare('UPDATE schedule SET anchor = ? WHERE task_id = ?').run(nowSec, args.id);
+                        db.prepare('UPDATE schedule SET anchor = ? WHERE task_id = ?').run(nowSec(), args.id);
                         action = '完成并重置周期(任务保持活跃)';
                     }
                     else {
@@ -353,7 +387,7 @@ export function apply(ctx) {
                             db.prepare(`
                 INSERT INTO tasks (id, title, note, drive, is_cyclic, priority, status, created, snooze_until)
                 VALUES (?, ?, ?, 'end', 1, 3, 'active', ?, NULL)
-              `).run(newId, row.title, null, nowSec);
+              `).run(newId, row.title, null, nowSec());
                             db.prepare(`
                 INSERT INTO schedule (task_id, deadline, anchor, expected_duration, recurrence_interval)
                 VALUES (?, ?, NULL, NULL, ?)
@@ -363,6 +397,11 @@ export function apply(ctx) {
                         }
                     }
                     db.exec('COMMIT');
+                    // 人格挂钩:每完成一件事,好感度 +1(北极星:完成是好事,但只是小事)
+                    db.prepare(`
+            INSERT INTO persona (key, value, updated) VALUES ('affinity', '1', ?)
+            ON CONFLICT(key) DO UPDATE SET value = CAST(CAST(value AS INTEGER) + 1 AS TEXT), updated = ?
+          `).run(nowSec(), nowSec());
                     const msg = `「${row.title}」${action}。${extra}`;
                     return { id: args.id, title: row.title, action, message: msg };
                 }
@@ -482,6 +521,143 @@ export function apply(ctx) {
                     ? `任务 ${args.id} 已更新:${changed.join('、')}。`
                     : '没有提供任何要修改的字段,档案未变动。';
                 return { id: args.id, changed, message: msg };
+            }
+            finally {
+                db.close();
+            }
+        },
+    }));
+    // ── 人格变量(阶段7):她的内心状态与主人画像,数据归库,行为归她 ──
+    const PERSONA_DEFAULTS = { affinity: 0, serious_streak: 0 };
+    ctx.tools.register(defineTool({
+        name: 'persona_query',
+        description: '查看你的内心状态(好感度/严肃计数等)与最近的主人画像观察。醒来时看一眼,决定今天的语气(affinity 分档)和是否到了严肃时刻(serious_streak≥3)。',
+        parameters: {
+            observations: { type: 'number', description: '带出最近 N 条画像观察(默认 5,0=不带)' },
+        },
+        output: {
+            schema: {
+                type: 'object',
+                properties: {
+                    persona: { type: 'object', additionalProperties: true },
+                    observations: { type: 'array', items: { type: 'object', additionalProperties: true } },
+                    message: { type: 'string' },
+                },
+                additionalProperties: false,
+            },
+            render: (_a, v) => [{ type: 'text', text: v.message }],
+        },
+        async execute(args) {
+            const db = openArchive();
+            try {
+                const persona = {};
+                for (const r of db.prepare('SELECT key, value, updated FROM persona').all()) {
+                    const n = Number(r.value);
+                    persona[r.key] = Number.isNaN(n) ? r.value : n;
+                }
+                for (const [k, d] of Object.entries(PERSONA_DEFAULTS))
+                    if (persona[k] === undefined)
+                        persona[k] = d;
+                const limit = Math.min(Math.max(args.observations ?? 5, 0), 20);
+                const obs = limit
+                    ? db.prepare('SELECT ts, kind, text FROM observations ORDER BY id DESC LIMIT ?').all(limit)
+                        .map(o => ({ date: fmt(o.ts), kind: o.kind, text: o.text }))
+                    : [];
+                const tone = persona.affinity >= 20 ? '亲近(可以更可爱)'
+                    : persona.affinity >= 5 ? '熟稔(自然随意)' : '礼貌(克制专业)';
+                const serious = persona.serious_streak >= 3;
+                const message = `好感度 ${persona.affinity}(语气:${tone});严肃计数 ${persona.serious_streak}${serious ? ' → 已到严肃时刻,该试探性认真一次了,说完记得清零' : ''}` +
+                    (obs.length ? `;最近观察 ${obs.length} 条。` : '.');
+                return { persona, observations: obs, message };
+            }
+            finally {
+                db.close();
+            }
+        },
+    }));
+    ctx.tools.register(defineTool({
+        name: 'persona_update',
+        description: '更新内心状态计数。常用:主人连续敷衍/答应不做 → serious_streak +1;主人认真改正 → serious_streak 归零;重大愉快时刻 → affinity +1(日常完成已自动+1,不必手加)。',
+        parameters: {
+            affinity: { type: 'number', description: '好感度增量(可为负,慎用)' },
+            serious_streak: { type: 'number', description: '严肃计数增量(如 +1 或设 0 需传增量后用 set)' },
+            set: { type: 'object', additionalProperties: true, description: '直接设值:{ key: value },如 {"serious_streak":0}' },
+        },
+        output: {
+            schema: {
+                type: 'object',
+                properties: {
+                    changed: { type: 'object', additionalProperties: true },
+                    message: { type: 'string' },
+                },
+                additionalProperties: false,
+            },
+            render: (_a, v) => [{ type: 'text', text: v.message }],
+        },
+        async execute(args) {
+            if (args.affinity === undefined && args.serious_streak === undefined && !args.set) {
+                throw new Error('至少提供一项要更新的内容');
+            }
+            const db = openArchive(false);
+            try {
+                const now = nowSec();
+                const changed = {};
+                const bump = (key, delta) => {
+                    const cur = getPersona(db, key, PERSONA_DEFAULTS[key] ?? 0);
+                    const next = Math.max(0, cur + delta);
+                    db.prepare(`
+            INSERT INTO persona (key, value, updated) VALUES (?, ?, ?)
+            ON CONFLICT(key) DO UPDATE SET value = ?, updated = ?`).run(key, String(next), now, String(next), now);
+                    changed[key] = `${cur} → ${next}`;
+                };
+                if (args.affinity !== undefined)
+                    bump('affinity', Math.round(args.affinity));
+                if (args.serious_streak !== undefined)
+                    bump('serious_streak', Math.round(args.serious_streak));
+                if (args.set && typeof args.set === 'object') {
+                    for (const [k, v] of Object.entries(args.set)) {
+                        db.prepare(`
+              INSERT INTO persona (key, value, updated) VALUES (?, ?, ?)
+              ON CONFLICT(key) DO UPDATE SET value = ?, updated = ?`).run(k, String(v), now, String(v), now);
+                        changed[k] = String(v);
+                    }
+                }
+                return { changed, message: `内心状态已更新:${Object.entries(changed).map(([k, v]) => `${k}=${v}`).join(', ')}` };
+            }
+            finally {
+                db.close();
+            }
+        },
+    }));
+    ctx.tools.register(defineTool({
+        name: 'observation_add',
+        description: '记录一条主人画像观察。kind: hypothesis(假设,待验证)/fact(确证事实)/correction(修正旧假设)。文本一句话,如"主人连续两天 23 点后爆发式工作,假设:深夜型"。这是阶段6记忆系统的原料。',
+        parameters: {
+            kind: { type: 'string', description: 'hypothesis / fact / correction' },
+            text: { type: 'string', description: '一句话观察' },
+        },
+        output: {
+            schema: {
+                type: 'object',
+                properties: {
+                    id: { type: 'number' },
+                    message: { type: 'string' },
+                },
+                additionalProperties: false,
+            },
+            render: (_a, v) => [{ type: 'text', text: v.message }],
+        },
+        async execute(args) {
+            if (!['hypothesis', 'fact', 'correction'].includes(args.kind)) {
+                throw new Error('kind 必须是 hypothesis / fact / correction');
+            }
+            if (!args.text?.trim())
+                throw new Error('text 不能为空');
+            const db = openArchive(false);
+            try {
+                const r = db.prepare('INSERT INTO observations (ts, kind, text) VALUES (?, ?, ?)')
+                    .run(nowSec(), args.kind, args.text.trim());
+                return { id: Number(r.lastInsertRowid), message: `已记录 ${args.kind}:${args.text.trim()}` };
             }
             finally {
                 db.close();
