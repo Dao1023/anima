@@ -1,0 +1,4382 @@
+{
+ "tasks": [
+  {
+   "id": "8026e250539b",
+   "title": "报价单",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "30f00de1575a",
+   "title": "原神每日",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "45d710a66c30",
+   "title": "项目周报",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "496ddabea5d6",
+   "title": "看望发小",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "7771189b7529",
+   "title": "体检",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "aaf993dcdaaf",
+   "title": "打原神周本",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "7502e66907a6",
+   "title": "看生物技术新进展",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785126120",
+   "snooze_until": null
+  },
+  {
+   "id": "7f8cf3ba4c7b",
+   "title": "冒烟测试(已改)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785137820",
+   "snooze_until": null
+  },
+  {
+   "id": "51de26fe7555",
+   "title": "冒烟测试(已改)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785137820",
+   "snooze_until": null
+  },
+  {
+   "id": "9190e261343b",
+   "title": "测试新增-自动化(已编辑)",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785141300",
+   "snooze_until": null
+  },
+  {
+   "id": "44119703e9ba",
+   "title": "去无锡见客户,看实际需求",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 4,
+   "status": "closed",
+   "created": "1785144120",
+   "snooze_until": 1785211814
+  },
+  {
+   "id": "98b716a29f61",
+   "title": "YFPO-行为识别:开发轨迹检测功能",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 4,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785566228
+  },
+  {
+   "id": "921a77ffa671",
+   "title": "论文1《PDE backstepping》反步法:常量改变量逐个仿真",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 4,
+   "status": "closed",
+   "created": "1785144120",
+   "snooze_until": 1785211815
+  },
+  {
+   "id": "6630a402a7b0",
+   "title": "论文2《Safe Trajectory Tracking Stefan》对比我的移动边界",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785777874
+  },
+  {
+   "id": "7d587d47d5c7",
+   "title": "simkit 长期项目测试(给导师开发)",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1786184268
+  },
+  {
+   "id": "5e4eb34d2206",
+   "title": "零跑-能源报错:等堡垒机下发后测试",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785393866
+  },
+  {
+   "id": "3b0a1cdd0224",
+   "title": "零跑-报警报错:等堡垒机下发后测试",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785777874
+  },
+  {
+   "id": "86defeeac770",
+   "title": "零跑-新增能管数据:等能管部署完成",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785393866
+  },
+  {
+   "id": "aaf629ee8419",
+   "title": "催促张工:目标检测包反馈 + 杭州工厂视频",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785777874
+  },
+  {
+   "id": "621aa3a4e54a",
+   "title": "报销最近几笔(以前的不急)",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "done",
+   "created": "1785144120",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "47dac76c7754",
+   "title": "__smoke__",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1785148136",
+   "snooze_until": null
+  },
+  {
+   "id": "57abb9edc7c3",
+   "title": "__smoke2__",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785148137",
+   "snooze_until": null
+  },
+  {
+   "id": "3446f8ea99a1",
+   "title": "__smoke__",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785148156",
+   "snooze_until": null
+  },
+  {
+   "id": "56ef57da5e7b",
+   "title": "__expire_test__",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785152088",
+   "snooze_until": null
+  },
+  {
+   "id": "84129566eebc",
+   "title": "__expire_cyclic__",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785152088",
+   "snooze_until": null
+  },
+  {
+   "id": "873f799591b7",
+   "title": "__expire_cyclic__",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785152104",
+   "snooze_until": null
+  },
+  {
+   "id": "371574535924",
+   "title": "控制科学史(融入 DR_CAN 视频笔记)",
+   "note": "2025-10-16 首提,扩展项,融入 DR_CAN 视频笔记,搁置至今",
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "done",
+   "created": "1785163090",
+   "snooze_until": 1786701756
+  },
+  {
+   "id": "5bcc5b66a716",
+   "title": "宏叙系统 V0.1(用 AI 开发 RAG,需理解 N大架构)",
+   "note": "2025-10-29 首提,用 AI 开发 RAG,需理解 N大架构,搁置至今",
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "done",
+   "created": "1785163091",
+   "snooze_until": 1786960714
+  },
+  {
+   "id": "4d894c007017",
+   "title": "原神每日委托",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165132",
+   "snooze_until": 1785168768
+  },
+  {
+   "id": "1cd16740dc96",
+   "title": "异环每日",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165132",
+   "snooze_until": null
+  },
+  {
+   "id": "098bac8b1c76",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165133",
+   "snooze_until": 1785238844
+  },
+  {
+   "id": "02febe358b52",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165133",
+   "snooze_until": 1785238844
+  },
+  {
+   "id": "feb31fca4a81",
+   "title": "给父母打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1785165133",
+   "snooze_until": 1785333165
+  },
+  {
+   "id": "d10dae841e7b",
+   "title": "给奶奶打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1785165133",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "4b03ce0d1a84",
+   "title": "异环每日",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165167",
+   "snooze_until": 1785238844
+  },
+  {
+   "id": "b8789ee70f72",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785165242",
+   "snooze_until": 1785168858
+  },
+  {
+   "id": "e942f7bad591",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785165243",
+   "snooze_until": null
+  },
+  {
+   "id": "3b2054886dbb",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785165289",
+   "snooze_until": 1785238845
+  },
+  {
+   "id": "d6230d2b3584",
+   "title": "去南京见见蒋枚萱",
+   "note": "工作较忙,假期约见面",
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "active",
+   "created": "1785169632",
+   "snooze_until": 1785715200
+  },
+  {
+   "id": "ee21c13c0b6d",
+   "title": "去南京见见胖头鱼",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "active",
+   "created": "1785169632",
+   "snooze_until": 1785715200
+  },
+  {
+   "id": "0174b5a50020",
+   "title": "搞数学建模",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785173747",
+   "snooze_until": 1785177430
+  },
+  {
+   "id": "73948c47aa50",
+   "title": "搞数学建模",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785173798",
+   "snooze_until": 1785481249
+  },
+  {
+   "id": "15ebd6a5a4db",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785182416",
+   "snooze_until": 1785238845
+  },
+  {
+   "id": "e5de89abe85a",
+   "title": "launcherX 的开发",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1785208190",
+   "snooze_until": 1786184855
+  },
+  {
+   "id": "8cec727f5904",
+   "title": "industryruntime 的开发",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1785208191",
+   "snooze_until": 1786191093
+  },
+  {
+   "id": "c4bd501fa5b4",
+   "title": "论文1《PDE backstepping》反步法:常量改变量逐个仿真",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 4,
+   "status": "done",
+   "created": "1785210793",
+   "snooze_until": 1785431379
+  },
+  {
+   "id": "5855db6d2aa8",
+   "title": "零跑-能源清单:等堡垒机通后发给客户",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785211021",
+   "snooze_until": 1785566228
+  },
+  {
+   "id": "9504b979c240",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785251926",
+   "snooze_until": 1785380414
+  },
+  {
+   "id": "b96e16188d86",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785251929",
+   "snooze_until": 1785380414
+  },
+  {
+   "id": "0c3dad09363a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785253207",
+   "snooze_until": 1785258408
+  },
+  {
+   "id": "99aabb0d6589",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785253208",
+   "snooze_until": 1785258408
+  },
+  {
+   "id": "288d8a828d45",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785254429",
+   "snooze_until": 1785335360
+  },
+  {
+   "id": "7edfd73c9a7a",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785254429",
+   "snooze_until": 1785335360
+  },
+  {
+   "id": "b7e9e9a1edc7",
+   "title": "给张工签字",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785303881",
+   "snooze_until": null
+  },
+  {
+   "id": "d8d84727f65c",
+   "title": "给张工签字",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785304025",
+   "snooze_until": 1785393395
+  },
+  {
+   "id": "d8cd68dbc93f",
+   "title": "跑数字孪生初步框架",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785310075",
+   "snooze_until": 1785950693
+  },
+  {
+   "id": "300ae965871f",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785334365",
+   "snooze_until": 1785431379
+  },
+  {
+   "id": "156dde16202a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785335724",
+   "snooze_until": 1785431379
+  },
+  {
+   "id": "5695aaa1c75b",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785355219",
+   "snooze_until": 1785409278
+  },
+  {
+   "id": "b884b5224ead",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785355219",
+   "snooze_until": 1785409308
+  },
+  {
+   "id": "7564fdcaae93",
+   "title": "研究荣恩项目方案",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785418379",
+   "snooze_until": 1785859324
+  },
+  {
+   "id": "3a196079e7f8",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785423172",
+   "snooze_until": 1785566227
+  },
+  {
+   "id": "8685f1f2ecde",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785423173",
+   "snooze_until": 1785566227
+  },
+  {
+   "id": "fdc763098efe",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785427207",
+   "snooze_until": 1785503685
+  },
+  {
+   "id": "4893dddb2d3d",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785427207",
+   "snooze_until": 1785503685
+  },
+  {
+   "id": "972885d611de",
+   "title": "给父母打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1785481741",
+   "snooze_until": null
+  },
+  {
+   "id": "7c54f802a2d8",
+   "title": "给父母打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1785481770",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "27bc34cc6344",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785513630",
+   "snooze_until": 1785593260
+  },
+  {
+   "id": "7ced3e62d14d",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785513631",
+   "snooze_until": 1785593260
+  },
+  {
+   "id": "57e919bada48",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785528025",
+   "snooze_until": 1785593260
+  },
+  {
+   "id": "d8d715b6850a",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785528025",
+   "snooze_until": 1785593260
+  },
+  {
+   "id": "1fb20d2fe2cb",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785600002",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "8656baccc372",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785600003",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "959eb0b9b2db",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785647183",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "352b603a4063",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785647183",
+   "snooze_until": 1785655096
+  },
+  {
+   "id": "ae561d78c854",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785682280",
+   "snooze_until": 1785777875
+  },
+  {
+   "id": "85f51ddcf829",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785686409",
+   "snooze_until": 1785777875
+  },
+  {
+   "id": "ff0680b39e25",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785689061",
+   "snooze_until": 1785777874
+  },
+  {
+   "id": "820296106af9",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785759113",
+   "snooze_until": 1785777874
+  },
+  {
+   "id": "02fe68aa4e02",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785772801",
+   "snooze_until": 1785843061
+  },
+  {
+   "id": "7ba1042d7cc9",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785772801",
+   "snooze_until": 1785844875
+  },
+  {
+   "id": "2a6954c7233a",
+   "title": "【测试】看看新浮窗",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785779659",
+   "snooze_until": null
+  },
+  {
+   "id": "16e2986f2d1d",
+   "title": "【测试】新浮窗长这样",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785779747",
+   "snooze_until": null
+  },
+  {
+   "id": "4d231bdac90a",
+   "title": "【测试】WS被动接收",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785780778",
+   "snooze_until": null
+  },
+  {
+   "id": "2f2a654ecc32",
+   "title": "【测试2】被动弹窗",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785781256",
+   "snooze_until": 1785786830
+  },
+  {
+   "id": "910033d4224e",
+   "title": "【测试】点右上角×关我",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 5,
+   "status": "closed",
+   "created": "1785783570",
+   "snooze_until": null
+  },
+  {
+   "id": "53a830454b94",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785787214",
+   "snooze_until": 1785848033
+  },
+  {
+   "id": "d23b4f26ff00",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785787214",
+   "snooze_until": 1785848080
+  },
+  {
+   "id": "28c4f2893ba9",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785843889",
+   "snooze_until": 1785938765
+  },
+  {
+   "id": "9385964c4edf",
+   "title": "部署轨迹追踪",
+   "note": "8.3计划的，突然忘了，今天8.4才想起来，今晚给部署了吧",
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785844346",
+   "snooze_until": 1785942704
+  },
+  {
+   "id": "f1d00b4c2ce9",
+   "title": "行为识别的杭州项目，测试追踪方案+轨迹检测组合",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785844448",
+   "snooze_until": null
+  },
+  {
+   "id": "320efbb94663",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785859303",
+   "snooze_until": 1785937803
+  },
+  {
+   "id": "536f3f5b97c2",
+   "title": "荣恩相机演示",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785859460",
+   "snooze_until": 1785941499
+  },
+  {
+   "id": "8db766db263b",
+   "title": "yfpo目标检测结项",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785863407",
+   "snooze_until": null
+  },
+  {
+   "id": "0837b175c418",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785863468",
+   "snooze_until": 1785939724
+  },
+  {
+   "id": "de206f3e3435",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785863469",
+   "snooze_until": 1785935026
+  },
+  {
+   "id": "5a4e2836d1c2",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785944174",
+   "snooze_until": null
+  },
+  {
+   "id": "987970ba361e",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785946054",
+   "snooze_until": 1785999624
+  },
+  {
+   "id": "5aa67e5194f6",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1785946054",
+   "snooze_until": null
+  },
+  {
+   "id": "c948097d6e37",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1785993591",
+   "snooze_until": null
+  },
+  {
+   "id": "08c278cb373a",
+   "title": "爱沙尼亚塔林理工实验室的课题组情况",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1785993729",
+   "snooze_until": null
+  },
+  {
+   "id": "94fa754b921a",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786001397",
+   "snooze_until": null
+  },
+  {
+   "id": "2da0934acff2",
+   "title": "专利申请",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786027714",
+   "snooze_until": null
+  },
+  {
+   "id": "20ee8f025e19",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786030459",
+   "snooze_until": null
+  },
+  {
+   "id": "c11e6ec74841",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786032592",
+   "snooze_until": null
+  },
+  {
+   "id": "9dbd6e750646",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786032592",
+   "snooze_until": null
+  },
+  {
+   "id": "f0e41cd700f2",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786118994",
+   "snooze_until": null
+  },
+  {
+   "id": "b0407ddc0719",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786118994",
+   "snooze_until": null
+  },
+  {
+   "id": "ea8351dae797",
+   "title": "三阶段现场测试",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786123546",
+   "snooze_until": null
+  },
+  {
+   "id": "0038bac5392c",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786133395",
+   "snooze_until": null
+  },
+  {
+   "id": "2a2733c6262a",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786133395",
+   "snooze_until": null
+  },
+  {
+   "id": "ab278c377f85",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786204835",
+   "snooze_until": null
+  },
+  {
+   "id": "e46091e76f2a",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786205674",
+   "snooze_until": null
+  },
+  {
+   "id": "e00d8471892a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786205674",
+   "snooze_until": null
+  },
+  {
+   "id": "7c3b951031eb",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786220074",
+   "snooze_until": null
+  },
+  {
+   "id": "63f291194d35",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786292077",
+   "snooze_until": null
+  },
+  {
+   "id": "453d4969779a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786292077",
+   "snooze_until": null
+  },
+  {
+   "id": "0dfdaf6d6f01",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786306477",
+   "snooze_until": null
+  },
+  {
+   "id": "897121b09bbc",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786306477",
+   "snooze_until": null
+  },
+  {
+   "id": "a90fb40893de",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786342790",
+   "snooze_until": null
+  },
+  {
+   "id": "8fa8595ba34a",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786365602",
+   "snooze_until": null
+  },
+  {
+   "id": "68a8bc83fdc0",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786375317",
+   "snooze_until": null
+  },
+  {
+   "id": "7d30fb6e69cc",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786378480",
+   "snooze_until": null
+  },
+  {
+   "id": "6bdc715c5c17",
+   "title": "移动边界控制各参数仿真",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786420966",
+   "snooze_until": null
+  },
+  {
+   "id": "44660a859279",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786434895",
+   "snooze_until": null
+  },
+  {
+   "id": "c4cb6e65d802",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786455011",
+   "snooze_until": null
+  },
+  {
+   "id": "0b6dbfcc0003",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786460219",
+   "snooze_until": null
+  },
+  {
+   "id": "17998e83a630",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786464883",
+   "snooze_until": null
+  },
+  {
+   "id": "11364f7abd7e",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786551287",
+   "snooze_until": null
+  },
+  {
+   "id": "47993e319721",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786551287",
+   "snooze_until": null
+  },
+  {
+   "id": "349946dfc688",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786565687",
+   "snooze_until": null
+  },
+  {
+   "id": "3a0133c83237",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786565687",
+   "snooze_until": null
+  },
+  {
+   "id": "ee0442776edc",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786646988",
+   "snooze_until": null
+  },
+  {
+   "id": "77be5d20343a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786646988",
+   "snooze_until": null
+  },
+  {
+   "id": "a84e34aa4174",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786651788",
+   "snooze_until": null
+  },
+  {
+   "id": "2d47f4f62e1c",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786651788",
+   "snooze_until": null
+  },
+  {
+   "id": "36e8ce6a2256",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786705794",
+   "snooze_until": null
+  },
+  {
+   "id": "72a57bbc5d07",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786723792",
+   "snooze_until": null
+  },
+  {
+   "id": "a57006e068b2",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786723792",
+   "snooze_until": null
+  },
+  {
+   "id": "3208c37598fe",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786738192",
+   "snooze_until": null
+  },
+  {
+   "id": "8c58ae6fad15",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786803000",
+   "snooze_until": null
+  },
+  {
+   "id": "a380b1b6b1d3",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786810197",
+   "snooze_until": null
+  },
+  {
+   "id": "d5ef7e041f4d",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786810197",
+   "snooze_until": null
+  },
+  {
+   "id": "d8f9cc53961b",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786824597",
+   "snooze_until": null
+  },
+  {
+   "id": "80f5b1089083",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786824597",
+   "snooze_until": null
+  },
+  {
+   "id": "1d2f54308adc",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786824597",
+   "snooze_until": null
+  },
+  {
+   "id": "65b48bb0ead3",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786871409",
+   "snooze_until": null
+  },
+  {
+   "id": "88d53931aa0e",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1786871422",
+   "snooze_until": null
+  },
+  {
+   "id": "0d432f3a6a4c",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786871422",
+   "snooze_until": null
+  },
+  {
+   "id": "7993597f9716",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786891804",
+   "snooze_until": null
+  },
+  {
+   "id": "6bf29e869ff1",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786891807",
+   "snooze_until": null
+  },
+  {
+   "id": "81cf1674c7a0",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786896602",
+   "snooze_until": null
+  },
+  {
+   "id": "37d1a3638efb",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786896602",
+   "snooze_until": null
+  },
+  {
+   "id": "3f168c89d2dd",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786911002",
+   "snooze_until": null
+  },
+  {
+   "id": "9c4a75d18ed2",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786911002",
+   "snooze_until": null
+  },
+  {
+   "id": "d64537495036",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1786911002",
+   "snooze_until": null
+  },
+  {
+   "id": "9aa6d9f1abd7",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787861770",
+   "snooze_until": null
+  },
+  {
+   "id": "387b2a00567a",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787861771",
+   "snooze_until": null
+  },
+  {
+   "id": "677ceb0a8ea7",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787861771",
+   "snooze_until": null
+  },
+  {
+   "id": "b8d28fc761b8",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787933773",
+   "snooze_until": null
+  },
+  {
+   "id": "8ea5e6cfca61",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787933773",
+   "snooze_until": null
+  },
+  {
+   "id": "7c0fb723630a",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787933773",
+   "snooze_until": null
+  },
+  {
+   "id": "7b96c5ad7756",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787933773",
+   "snooze_until": null
+  },
+  {
+   "id": "6cab75e6c994",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787947505",
+   "snooze_until": null
+  },
+  {
+   "id": "5879a6113c84",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787947505",
+   "snooze_until": null
+  },
+  {
+   "id": "ecd94ae60224",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1787947505",
+   "snooze_until": null
+  },
+  {
+   "id": "5684fb05a0a2",
+   "title": "数学建模复赛",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788003586",
+   "snooze_until": null
+  },
+  {
+   "id": "14a4b9354c6d",
+   "title": "买回形针和红笔，用老师的卡",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788003614",
+   "snooze_until": null
+  },
+  {
+   "id": "d7f7d1f704a4",
+   "title": "仪征项目问题解决：模型训练、MES",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788003627",
+   "snooze_until": null
+  },
+  {
+   "id": "854253b5646e",
+   "title": "给父母打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "done",
+   "created": "1788003695",
+   "snooze_until": null
+  },
+  {
+   "id": "e21a136de041",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788019507",
+   "snooze_until": null
+  },
+  {
+   "id": "c310dca46b83",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788019507",
+   "snooze_until": null
+  },
+  {
+   "id": "90ec4f209f49",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788033907",
+   "snooze_until": null
+  },
+  {
+   "id": "ceee7f5e2d4b",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788033907",
+   "snooze_until": null
+  },
+  {
+   "id": "5ca22d1d0140",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788080732",
+   "snooze_until": null
+  },
+  {
+   "id": "bccde9ac69c5",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788080734",
+   "snooze_until": null
+  },
+  {
+   "id": "a5e4b0c3e765",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788083523",
+   "snooze_until": null
+  },
+  {
+   "id": "decea5d2475c",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788088859",
+   "snooze_until": null
+  },
+  {
+   "id": "adf66432bb61",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788447055",
+   "snooze_until": null
+  },
+  {
+   "id": "ee12d0621e3c",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788447055",
+   "snooze_until": null
+  },
+  {
+   "id": "b025a6ff11d8",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788447055",
+   "snooze_until": null
+  },
+  {
+   "id": "4dea7690ce95",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788447055",
+   "snooze_until": null
+  },
+  {
+   "id": "db527a129fe4",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788451856",
+   "snooze_until": null
+  },
+  {
+   "id": "bb0abc38f6fc",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788451856",
+   "snooze_until": null
+  },
+  {
+   "id": "a745d054a73b",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788466259",
+   "snooze_until": null
+  },
+  {
+   "id": "f188df882206",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788466259",
+   "snooze_until": null
+  },
+  {
+   "id": "a24246bc4091",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788509542",
+   "snooze_until": null
+  },
+  {
+   "id": "b43d4aeae160",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788511171",
+   "snooze_until": null
+  },
+  {
+   "id": "8e9739c8e14c",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788538109",
+   "snooze_until": null
+  },
+  {
+   "id": "906c84cb5c45",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788552509",
+   "snooze_until": null
+  },
+  {
+   "id": "b942c536e110",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788622958",
+   "snooze_until": null
+  },
+  {
+   "id": "1a8473f018dc",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788624152",
+   "snooze_until": null
+  },
+  {
+   "id": "084eab706908",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788624152",
+   "snooze_until": null
+  },
+  {
+   "id": "61d7f7029097",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788638553",
+   "snooze_until": null
+  },
+  {
+   "id": "d85f4a26ad05",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788709928",
+   "snooze_until": null
+  },
+  {
+   "id": "24b1f9a0ba17",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788710558",
+   "snooze_until": null
+  },
+  {
+   "id": "f6d690bd9aa1",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788710558",
+   "snooze_until": null
+  },
+  {
+   "id": "f44c600b61b8",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1788724958",
+   "snooze_until": null
+  },
+  {
+   "id": "d2c41968c4e6",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788759765",
+   "snooze_until": null
+  },
+  {
+   "id": "476fb29805f2",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788793779",
+   "snooze_until": null
+  },
+  {
+   "id": "0cddb6892c87",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788794568",
+   "snooze_until": null
+  },
+  {
+   "id": "44e94c8b52ff",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788796962",
+   "snooze_until": null
+  },
+  {
+   "id": "f253c10c3131",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788883366",
+   "snooze_until": null
+  },
+  {
+   "id": "f326d28c0d13",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788883366",
+   "snooze_until": null
+  },
+  {
+   "id": "c4f522cf0ff4",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788897766",
+   "snooze_until": null
+  },
+  {
+   "id": "ff2ca75eca45",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788897766",
+   "snooze_until": null
+  },
+  {
+   "id": "3a86856384db",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788969770",
+   "snooze_until": null
+  },
+  {
+   "id": "ddab4e1947cc",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788969770",
+   "snooze_until": null
+  },
+  {
+   "id": "c36cf8be94e3",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788984171",
+   "snooze_until": null
+  },
+  {
+   "id": "c6eb4cd3f0c9",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1788984171",
+   "snooze_until": null
+  },
+  {
+   "id": "c9c20ae817d0",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789456404",
+   "snooze_until": null
+  },
+  {
+   "id": "aeb0ace57838",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789456404",
+   "snooze_until": null
+  },
+  {
+   "id": "3882d658eeef",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789456404",
+   "snooze_until": null
+  },
+  {
+   "id": "8cebfcfebc24",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789456404",
+   "snooze_until": null
+  },
+  {
+   "id": "b95fdc02e9c0",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789488935",
+   "snooze_until": null
+  },
+  {
+   "id": "c9c12c2bdf13",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789488935",
+   "snooze_until": null
+  },
+  {
+   "id": "6dee07bbbda5",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789492925",
+   "snooze_until": null
+  },
+  {
+   "id": "090aa593617a",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789492927",
+   "snooze_until": null
+  },
+  {
+   "id": "7b80f0c0b368",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789492949",
+   "snooze_until": null
+  },
+  {
+   "id": "675e32c3448b",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789575478",
+   "snooze_until": null
+  },
+  {
+   "id": "5d5af9ae188f",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789575478",
+   "snooze_until": null
+  },
+  {
+   "id": "3fc0836ed669",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789589878",
+   "snooze_until": null
+  },
+  {
+   "id": "2ce045a70c55",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789648886",
+   "snooze_until": null
+  },
+  {
+   "id": "4807a3f6aae7",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789651885",
+   "snooze_until": null
+  },
+  {
+   "id": "8b06bdc9f645",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789661881",
+   "snooze_until": null
+  },
+  {
+   "id": "1e5e2033b6db",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789661881",
+   "snooze_until": null
+  },
+  {
+   "id": "01e3d4648731",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789725833",
+   "snooze_until": null
+  },
+  {
+   "id": "f3392edd084d",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789725834",
+   "snooze_until": null
+  },
+  {
+   "id": "dbb7f0b41c5d",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789726750",
+   "snooze_until": null
+  },
+  {
+   "id": "03660c967a7e",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789748284",
+   "snooze_until": null
+  },
+  {
+   "id": "516499c729d8",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789827571",
+   "snooze_until": null
+  },
+  {
+   "id": "8f32e3cb4e95",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789829908",
+   "snooze_until": null
+  },
+  {
+   "id": "cc694068a400",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1789834687",
+   "snooze_until": null
+  },
+  {
+   "id": "079b375ba4b4",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789834687",
+   "snooze_until": null
+  },
+  {
+   "id": "663aa55f079f",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789876705",
+   "snooze_until": null
+  },
+  {
+   "id": "a32cc3332f48",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789880606",
+   "snooze_until": null
+  },
+  {
+   "id": "5d380387836e",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789914028",
+   "snooze_until": null
+  },
+  {
+   "id": "a5957c93e287",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789921089",
+   "snooze_until": null
+  },
+  {
+   "id": "fd222ac6cd0d",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789921090",
+   "snooze_until": null
+  },
+  {
+   "id": "de5239df4915",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1789935490",
+   "snooze_until": null
+  },
+  {
+   "id": "1b2f5c7dea4c",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1790007493",
+   "snooze_until": null
+  },
+  {
+   "id": "f0c54d68d19b",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790007493",
+   "snooze_until": null
+  },
+  {
+   "id": "2099453d3241",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790007493",
+   "snooze_until": null
+  },
+  {
+   "id": "866a0b59f838",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790021893",
+   "snooze_until": null
+  },
+  {
+   "id": "14a5c2b4b8b1",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790021893",
+   "snooze_until": null
+  },
+  {
+   "id": "1ea7626bc83d",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790093603",
+   "snooze_until": null
+  },
+  {
+   "id": "a99e7448a2c3",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790093603",
+   "snooze_until": null
+  },
+  {
+   "id": "958277bae653",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790093603",
+   "snooze_until": null
+  },
+  {
+   "id": "7eed3021e638",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790108003",
+   "snooze_until": null
+  },
+  {
+   "id": "aafa85aa0513",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790108003",
+   "snooze_until": null
+  },
+  {
+   "id": "8204945441bd",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790174009",
+   "snooze_until": null
+  },
+  {
+   "id": "6948d517f73a",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790180007",
+   "snooze_until": null
+  },
+  {
+   "id": "b1517e8f094e",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790180007",
+   "snooze_until": null
+  },
+  {
+   "id": "bb6e56adaf77",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790180007",
+   "snooze_until": null
+  },
+  {
+   "id": "29b1992aa654",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790180007",
+   "snooze_until": null
+  },
+  {
+   "id": "3c2ec8852351",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790194407",
+   "snooze_until": null
+  },
+  {
+   "id": "c3c67987cad0",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790194407",
+   "snooze_until": null
+  },
+  {
+   "id": "0427c877671a",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1790266412",
+   "snooze_until": null
+  },
+  {
+   "id": "9191c6633797",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790266412",
+   "snooze_until": null
+  },
+  {
+   "id": "83f25ca00ac1",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "done",
+   "created": "1790266412",
+   "snooze_until": null
+  },
+  {
+   "id": "117b493f0473",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790266412",
+   "snooze_until": null
+  },
+  {
+   "id": "b6f98331569b",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790280813",
+   "snooze_until": null
+  },
+  {
+   "id": "805767e03a6f",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790280813",
+   "snooze_until": null
+  },
+  {
+   "id": "e9b26d1d890c",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790344461",
+   "snooze_until": null
+  },
+  {
+   "id": "f7e50236dff2",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790344462",
+   "snooze_until": null
+  },
+  {
+   "id": "10fc2068415d",
+   "title": "英语每日(和豆包练口语)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790352816",
+   "snooze_until": null
+  },
+  {
+   "id": "8850b14106be",
+   "title": "日语每日(和豆包)",
+   "note": null,
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "closed",
+   "created": "1790352816",
+   "snooze_until": null
+  },
+  {
+   "id": "962abdeda947",
+   "title": "异环每日",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790367216",
+   "snooze_until": null
+  },
+  {
+   "id": "da73c8823ccf",
+   "title": "原神每日委托",
+   "note": "每日凌晨4点重置",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790367216",
+   "snooze_until": null
+  },
+  {
+   "id": "4389c8fd22d7",
+   "title": "给奶奶打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "active",
+   "created": "1790412344",
+   "snooze_until": null
+  },
+  {
+   "id": "3d04461f1620",
+   "title": "给父母打电话",
+   "note": null,
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 3,
+   "status": "active",
+   "created": "1790412347",
+   "snooze_until": null
+  },
+  {
+   "id": "79004934-55d0-4f06-afa1-8e059be45d79",
+   "title": "订 10/5 徐州酒店",
+   "note": "10/5 中午到徐州,夜里住徐州,酒店还没定。主人旅游中,最好 10/3 出发前就定好。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "active",
+   "created": "1790841642.0",
+   "snooze_until": null
+  },
+  {
+   "id": "12da048c-30c2-46eb-b00d-e99bc169d8b5",
+   "title": "抢 10/7 返程票",
+   "note": "10/7 返程票记着抢,也可以 10/7 之前回去。火车票提前 15 天开售,现在就能买,越早越好。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 1,
+   "status": "active",
+   "created": "1790841642.0",
+   "snooze_until": null
+  },
+  {
+   "id": "6854a431-c894-4edf-890e-92ea72c03f06",
+   "title": "零跑-能源系统:界面优化+数据接入",
+   "note": "能源界面优化+数据填充。原定\"国庆节之前必须弄完\",今天就是 10-1,已到红线,最高优先级。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 1,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "e7e0a154-46a5-47ad-8717-2556e253b5a9",
+   "title": "师兄自抗扰论文二审修改",
+   "note": "改仿真美化图片+加密应用图。主人说\"国庆弄完\",假期 10-8 结束,暂定此线。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 1,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "bee5cdb9-df5e-4ffb-85b6-e2aa14b33f14",
+   "title": "移动边界控制论文:仿真大框架",
+   "note": "10月跑完大框架仿真,11月动笔写作。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "eafec931-d91b-47af-93fb-67d47699e16c",
+   "title": "移动边界控制论文:写作+投出",
+   "note": "\"12月之前发\"。依赖 10 月仿真完成。若投稿流程需要导师审阅,建议留 1-2 周缓冲。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 2,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "8c8ca084-6514-4265-83a4-cd86b7d43d02",
+   "title": "YFPO-行为识别:训练平台流程优化",
+   "note": "流程优化。客户没给明确截止,暂定 10-15,主人定夺。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "cb618ae8-d7aa-46e7-af8d-23d45a18e811",
+   "title": "雅思单词·胜经 2820 词(每天 30 词)",
+   "note": "2820 词 ÷ 30 词/天 ≈ 94 天,从 10-1 开始正好 2027-1-2 学完。建议每天打卡,我来盯进度。",
+   "drive": "end",
+   "is_cyclic": 0,
+   "priority": 3,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  },
+  {
+   "id": "659b8f5f-bc88-44bc-a76b-ac29da3ab4f4",
+   "title": "雅思每周交流练习(读写+口听)",
+   "note": "AI 出题练阅读写作+豆包练口语听力。下半年\"简单学学\"阶段以单词+每周交流为主,真题和真经/词根两本书留到明年冲刺期。",
+   "drive": "start",
+   "is_cyclic": 1,
+   "priority": 4,
+   "status": "active",
+   "created": "1790857030.0",
+   "snooze_until": null
+  }
+ ],
+ "tags": [
+  {
+   "id": 1,
+   "name": "公司",
+   "parent_id": 358
+  },
+  {
+   "id": 5,
+   "name": "健康",
+   "parent_id": 362
+  },
+  {
+   "id": 7,
+   "name": "学习",
+   "parent_id": 362
+  },
+  {
+   "id": 13,
+   "name": "YFPO",
+   "parent_id": 1
+  },
+  {
+   "id": 14,
+   "name": "科研",
+   "parent_id": 360
+  },
+  {
+   "id": 18,
+   "name": "零跑",
+   "parent_id": 1
+  },
+  {
+   "id": 29,
+   "name": "个人项目",
+   "parent_id": 362
+  },
+  {
+   "id": 30,
+   "name": "游戏",
+   "parent_id": 362
+  },
+  {
+   "id": 34,
+   "name": "家庭",
+   "parent_id": 362
+  },
+  {
+   "id": 41,
+   "name": "社交",
+   "parent_id": 362
+  },
+  {
+   "id": 43,
+   "name": "竞赛",
+   "parent_id": 360
+  },
+  {
+   "id": 64,
+   "name": "荣恩",
+   "parent_id": 1
+  },
+  {
+   "id": 358,
+   "name": "工作",
+   "parent_id": null
+  },
+  {
+   "id": 359,
+   "name": "导师",
+   "parent_id": 360
+  },
+  {
+   "id": 360,
+   "name": "学校",
+   "parent_id": 358
+  },
+  {
+   "id": 362,
+   "name": "生活",
+   "parent_id": null
+  },
+  {
+   "id": 371,
+   "name": "内部项目",
+   "parent_id": 1
+  },
+  {
+   "id": 428,
+   "name": "测试",
+   "parent_id": null
+  },
+  {
+   "id": 429,
+   "name": "兼职",
+   "parent_id": null
+  },
+  {
+   "id": 430,
+   "name": "论文",
+   "parent_id": null
+  },
+  {
+   "id": 431,
+   "name": "雅思",
+   "parent_id": null
+  },
+  {
+   "id": 432,
+   "name": "单词",
+   "parent_id": null
+  }
+ ],
+ "task_tags": [
+  {
+   "task_id": "8026e250539b",
+   "tag_id": 1
+  },
+  {
+   "task_id": "45d710a66c30",
+   "tag_id": 1
+  },
+  {
+   "task_id": "7771189b7529",
+   "tag_id": 5
+  },
+  {
+   "task_id": "7502e66907a6",
+   "tag_id": 7
+  },
+  {
+   "task_id": "44119703e9ba",
+   "tag_id": 1
+  },
+  {
+   "task_id": "98b716a29f61",
+   "tag_id": 1
+  },
+  {
+   "task_id": "98b716a29f61",
+   "tag_id": 13
+  },
+  {
+   "task_id": "921a77ffa671",
+   "tag_id": 14
+  },
+  {
+   "task_id": "7d587d47d5c7",
+   "tag_id": 14
+  },
+  {
+   "task_id": "5e4eb34d2206",
+   "tag_id": 1
+  },
+  {
+   "task_id": "5e4eb34d2206",
+   "tag_id": 18
+  },
+  {
+   "task_id": "3b0a1cdd0224",
+   "tag_id": 1
+  },
+  {
+   "task_id": "3b0a1cdd0224",
+   "tag_id": 18
+  },
+  {
+   "task_id": "86defeeac770",
+   "tag_id": 1
+  },
+  {
+   "task_id": "86defeeac770",
+   "tag_id": 18
+  },
+  {
+   "task_id": "aaf629ee8419",
+   "tag_id": 1
+  },
+  {
+   "task_id": "aaf629ee8419",
+   "tag_id": 13
+  },
+  {
+   "task_id": "4d894c007017",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1cd16740dc96",
+   "tag_id": 30
+  },
+  {
+   "task_id": "098bac8b1c76",
+   "tag_id": 7
+  },
+  {
+   "task_id": "02febe358b52",
+   "tag_id": 7
+  },
+  {
+   "task_id": "feb31fca4a81",
+   "tag_id": 34
+  },
+  {
+   "task_id": "d10dae841e7b",
+   "tag_id": 34
+  },
+  {
+   "task_id": "b8789ee70f72",
+   "tag_id": 30
+  },
+  {
+   "task_id": "e942f7bad591",
+   "tag_id": 30
+  },
+  {
+   "task_id": "3b2054886dbb",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d6230d2b3584",
+   "tag_id": 41
+  },
+  {
+   "task_id": "ee21c13c0b6d",
+   "tag_id": 41
+  },
+  {
+   "task_id": "73948c47aa50",
+   "tag_id": 43
+  },
+  {
+   "task_id": "15ebd6a5a4db",
+   "tag_id": 30
+  },
+  {
+   "task_id": "5855db6d2aa8",
+   "tag_id": 1
+  },
+  {
+   "task_id": "5855db6d2aa8",
+   "tag_id": 18
+  },
+  {
+   "task_id": "9504b979c240",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b96e16188d86",
+   "tag_id": 30
+  },
+  {
+   "task_id": "0c3dad09363a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "99aabb0d6589",
+   "tag_id": 7
+  },
+  {
+   "task_id": "4b03ce0d1a84",
+   "tag_id": 30
+  },
+  {
+   "task_id": "288d8a828d45",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7edfd73c9a7a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "371574535924",
+   "tag_id": 14
+  },
+  {
+   "task_id": "c4bd501fa5b4",
+   "tag_id": 14
+  },
+  {
+   "task_id": "d8cd68dbc93f",
+   "tag_id": 1
+  },
+  {
+   "task_id": "d8cd68dbc93f",
+   "tag_id": 64
+  },
+  {
+   "task_id": "300ae965871f",
+   "tag_id": 7
+  },
+  {
+   "task_id": "156dde16202a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "5695aaa1c75b",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b884b5224ead",
+   "tag_id": 30
+  },
+  {
+   "task_id": "7564fdcaae93",
+   "tag_id": 1
+  },
+  {
+   "task_id": "7564fdcaae93",
+   "tag_id": 64
+  },
+  {
+   "task_id": "3a196079e7f8",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8685f1f2ecde",
+   "tag_id": 30
+  },
+  {
+   "task_id": "fdc763098efe",
+   "tag_id": 7
+  },
+  {
+   "task_id": "4893dddb2d3d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "972885d611de",
+   "tag_id": 34
+  },
+  {
+   "task_id": "7c54f802a2d8",
+   "tag_id": 34
+  },
+  {
+   "task_id": "27bc34cc6344",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7ced3e62d14d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "57e919bada48",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d8d715b6850a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1fb20d2fe2cb",
+   "tag_id": 7
+  },
+  {
+   "task_id": "8656baccc372",
+   "tag_id": 7
+  },
+  {
+   "task_id": "959eb0b9b2db",
+   "tag_id": 30
+  },
+  {
+   "task_id": "352b603a4063",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ae561d78c854",
+   "tag_id": 7
+  },
+  {
+   "task_id": "85f51ddcf829",
+   "tag_id": 7
+  },
+  {
+   "task_id": "ff0680b39e25",
+   "tag_id": 30
+  },
+  {
+   "task_id": "820296106af9",
+   "tag_id": 30
+  },
+  {
+   "task_id": "02fe68aa4e02",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7ba1042d7cc9",
+   "tag_id": 7
+  },
+  {
+   "task_id": "53a830454b94",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d23b4f26ff00",
+   "tag_id": 30
+  },
+  {
+   "task_id": "28c4f2893ba9",
+   "tag_id": 7
+  },
+  {
+   "task_id": "6630a402a7b0",
+   "tag_id": 14
+  },
+  {
+   "task_id": "320efbb94663",
+   "tag_id": 7
+  },
+  {
+   "task_id": "536f3f5b97c2",
+   "tag_id": 1
+  },
+  {
+   "task_id": "536f3f5b97c2",
+   "tag_id": 64
+  },
+  {
+   "task_id": "0837b175c418",
+   "tag_id": 30
+  },
+  {
+   "task_id": "de206f3e3435",
+   "tag_id": 30
+  },
+  {
+   "task_id": "5a4e2836d1c2",
+   "tag_id": 30
+  },
+  {
+   "task_id": "987970ba361e",
+   "tag_id": 7
+  },
+  {
+   "task_id": "5aa67e5194f6",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c948097d6e37",
+   "tag_id": 30
+  },
+  {
+   "task_id": "94fa754b921a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "2da0934acff2",
+   "tag_id": 1
+  },
+  {
+   "task_id": "20ee8f025e19",
+   "tag_id": 30
+  },
+  {
+   "task_id": "c11e6ec74841",
+   "tag_id": 7
+  },
+  {
+   "task_id": "9dbd6e750646",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f0e41cd700f2",
+   "tag_id": 7
+  },
+  {
+   "task_id": "b0407ddc0719",
+   "tag_id": 7
+  },
+  {
+   "task_id": "0038bac5392c",
+   "tag_id": 30
+  },
+  {
+   "task_id": "2a2733c6262a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ab278c377f85",
+   "tag_id": 30
+  },
+  {
+   "task_id": "e46091e76f2a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "e00d8471892a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7c3b951031eb",
+   "tag_id": 30
+  },
+  {
+   "task_id": "63f291194d35",
+   "tag_id": 7
+  },
+  {
+   "task_id": "453d4969779a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "0dfdaf6d6f01",
+   "tag_id": 30
+  },
+  {
+   "task_id": "897121b09bbc",
+   "tag_id": 30
+  },
+  {
+   "task_id": "a90fb40893de",
+   "tag_id": 7
+  },
+  {
+   "task_id": "8fa8595ba34a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "68a8bc83fdc0",
+   "tag_id": 30
+  },
+  {
+   "task_id": "7d30fb6e69cc",
+   "tag_id": 7
+  },
+  {
+   "task_id": "44660a859279",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c4cb6e65d802",
+   "tag_id": 30
+  },
+  {
+   "task_id": "0b6dbfcc0003",
+   "tag_id": 30
+  },
+  {
+   "task_id": "17998e83a630",
+   "tag_id": 7
+  },
+  {
+   "task_id": "11364f7abd7e",
+   "tag_id": 7
+  },
+  {
+   "task_id": "47993e319721",
+   "tag_id": 7
+  },
+  {
+   "task_id": "349946dfc688",
+   "tag_id": 30
+  },
+  {
+   "task_id": "3a0133c83237",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ee0442776edc",
+   "tag_id": 7
+  },
+  {
+   "task_id": "77be5d20343a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "a84e34aa4174",
+   "tag_id": 30
+  },
+  {
+   "task_id": "2d47f4f62e1c",
+   "tag_id": 30
+  },
+  {
+   "task_id": "36e8ce6a2256",
+   "tag_id": 30
+  },
+  {
+   "task_id": "72a57bbc5d07",
+   "tag_id": 7
+  },
+  {
+   "task_id": "a57006e068b2",
+   "tag_id": 7
+  },
+  {
+   "task_id": "3208c37598fe",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ea8351dae797",
+   "tag_id": 1
+  },
+  {
+   "task_id": "ea8351dae797",
+   "tag_id": 13
+  },
+  {
+   "task_id": "f1d00b4c2ce9",
+   "tag_id": 1
+  },
+  {
+   "task_id": "f1d00b4c2ce9",
+   "tag_id": 13
+  },
+  {
+   "task_id": "8c58ae6fad15",
+   "tag_id": 30
+  },
+  {
+   "task_id": "a380b1b6b1d3",
+   "tag_id": 7
+  },
+  {
+   "task_id": "d5ef7e041f4d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "d8f9cc53961b",
+   "tag_id": 30
+  },
+  {
+   "task_id": "80f5b1089083",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1d2f54308adc",
+   "tag_id": 30
+  },
+  {
+   "task_id": "65b48bb0ead3",
+   "tag_id": 7
+  },
+  {
+   "task_id": "88d53931aa0e",
+   "tag_id": 7
+  },
+  {
+   "task_id": "0d432f3a6a4c",
+   "tag_id": 7
+  },
+  {
+   "task_id": "5bcc5b66a716",
+   "tag_id": 29
+  },
+  {
+   "task_id": "7993597f9716",
+   "tag_id": 7
+  },
+  {
+   "task_id": "6bf29e869ff1",
+   "tag_id": 7
+  },
+  {
+   "task_id": "81cf1674c7a0",
+   "tag_id": 7
+  },
+  {
+   "task_id": "37d1a3638efb",
+   "tag_id": 7
+  },
+  {
+   "task_id": "3f168c89d2dd",
+   "tag_id": 30
+  },
+  {
+   "task_id": "9c4a75d18ed2",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d64537495036",
+   "tag_id": 30
+  },
+  {
+   "task_id": "9aa6d9f1abd7",
+   "tag_id": 30
+  },
+  {
+   "task_id": "387b2a00567a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "677ceb0a8ea7",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b8d28fc761b8",
+   "tag_id": 7
+  },
+  {
+   "task_id": "8ea5e6cfca61",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7c0fb723630a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7b96c5ad7756",
+   "tag_id": 7
+  },
+  {
+   "task_id": "6cab75e6c994",
+   "tag_id": 30
+  },
+  {
+   "task_id": "5879a6113c84",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ecd94ae60224",
+   "tag_id": 30
+  },
+  {
+   "task_id": "854253b5646e",
+   "tag_id": 34
+  },
+  {
+   "task_id": "e21a136de041",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c310dca46b83",
+   "tag_id": 7
+  },
+  {
+   "task_id": "90ec4f209f49",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ceee7f5e2d4b",
+   "tag_id": 30
+  },
+  {
+   "task_id": "5ca22d1d0140",
+   "tag_id": 30
+  },
+  {
+   "task_id": "bccde9ac69c5",
+   "tag_id": 30
+  },
+  {
+   "task_id": "a5e4b0c3e765",
+   "tag_id": 7
+  },
+  {
+   "task_id": "decea5d2475c",
+   "tag_id": 7
+  },
+  {
+   "task_id": "adf66432bb61",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ee12d0621e3c",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b025a6ff11d8",
+   "tag_id": 7
+  },
+  {
+   "task_id": "4dea7690ce95",
+   "tag_id": 7
+  },
+  {
+   "task_id": "db527a129fe4",
+   "tag_id": 7
+  },
+  {
+   "task_id": "bb0abc38f6fc",
+   "tag_id": 7
+  },
+  {
+   "task_id": "a745d054a73b",
+   "tag_id": 30
+  },
+  {
+   "task_id": "f188df882206",
+   "tag_id": 30
+  },
+  {
+   "task_id": "a24246bc4091",
+   "tag_id": 7
+  },
+  {
+   "task_id": "b43d4aeae160",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8e9739c8e14c",
+   "tag_id": 7
+  },
+  {
+   "task_id": "906c84cb5c45",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b942c536e110",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1a8473f018dc",
+   "tag_id": 7
+  },
+  {
+   "task_id": "084eab706908",
+   "tag_id": 7
+  },
+  {
+   "task_id": "61d7f7029097",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d85f4a26ad05",
+   "tag_id": 30
+  },
+  {
+   "task_id": "24b1f9a0ba17",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f6d690bd9aa1",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f44c600b61b8",
+   "tag_id": 30
+  },
+  {
+   "task_id": "d2c41968c4e6",
+   "tag_id": 7
+  },
+  {
+   "task_id": "476fb29805f2",
+   "tag_id": 30
+  },
+  {
+   "task_id": "0cddb6892c87",
+   "tag_id": 30
+  },
+  {
+   "task_id": "44e94c8b52ff",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f253c10c3131",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f326d28c0d13",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c4f522cf0ff4",
+   "tag_id": 30
+  },
+  {
+   "task_id": "ff2ca75eca45",
+   "tag_id": 30
+  },
+  {
+   "task_id": "3a86856384db",
+   "tag_id": 7
+  },
+  {
+   "task_id": "ddab4e1947cc",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c36cf8be94e3",
+   "tag_id": 30
+  },
+  {
+   "task_id": "c6eb4cd3f0c9",
+   "tag_id": 30
+  },
+  {
+   "task_id": "c9c20ae817d0",
+   "tag_id": 7
+  },
+  {
+   "task_id": "aeb0ace57838",
+   "tag_id": 7
+  },
+  {
+   "task_id": "3882d658eeef",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8cebfcfebc24",
+   "tag_id": 30
+  },
+  {
+   "task_id": "b95fdc02e9c0",
+   "tag_id": 7
+  },
+  {
+   "task_id": "c9c12c2bdf13",
+   "tag_id": 7
+  },
+  {
+   "task_id": "6dee07bbbda5",
+   "tag_id": 30
+  },
+  {
+   "task_id": "090aa593617a",
+   "tag_id": 30
+  },
+  {
+   "task_id": "7b80f0c0b368",
+   "tag_id": 30
+  },
+  {
+   "task_id": "08c278cb373a",
+   "tag_id": 14
+  },
+  {
+   "task_id": "621aa3a4e54a",
+   "tag_id": 371
+  },
+  {
+   "task_id": "e5de89abe85a",
+   "tag_id": 371
+  },
+  {
+   "task_id": "8cec727f5904",
+   "tag_id": 371
+  },
+  {
+   "task_id": "14a4b9354c6d",
+   "tag_id": 359
+  },
+  {
+   "task_id": "675e32c3448b",
+   "tag_id": 7
+  },
+  {
+   "task_id": "5d5af9ae188f",
+   "tag_id": 7
+  },
+  {
+   "task_id": "3fc0836ed669",
+   "tag_id": 30
+  },
+  {
+   "task_id": "2ce045a70c55",
+   "tag_id": 30
+  },
+  {
+   "task_id": "4807a3f6aae7",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8b06bdc9f645",
+   "tag_id": 7
+  },
+  {
+   "task_id": "1e5e2033b6db",
+   "tag_id": 7
+  },
+  {
+   "task_id": "01e3d4648731",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f3392edd084d",
+   "tag_id": 30
+  },
+  {
+   "task_id": "dbb7f0b41c5d",
+   "tag_id": 30
+  },
+  {
+   "task_id": "03660c967a7e",
+   "tag_id": 7
+  },
+  {
+   "task_id": "516499c729d8",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8f32e3cb4e95",
+   "tag_id": 30
+  },
+  {
+   "task_id": "cc694068a400",
+   "tag_id": 7
+  },
+  {
+   "task_id": "079b375ba4b4",
+   "tag_id": 7
+  },
+  {
+   "task_id": "663aa55f079f",
+   "tag_id": 7
+  },
+  {
+   "task_id": "a32cc3332f48",
+   "tag_id": 7
+  },
+  {
+   "task_id": "5d380387836e",
+   "tag_id": 30
+  },
+  {
+   "task_id": "a5957c93e287",
+   "tag_id": 7
+  },
+  {
+   "task_id": "fd222ac6cd0d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "de5239df4915",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1b2f5c7dea4c",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f0c54d68d19b",
+   "tag_id": 7
+  },
+  {
+   "task_id": "2099453d3241",
+   "tag_id": 7
+  },
+  {
+   "task_id": "866a0b59f838",
+   "tag_id": 30
+  },
+  {
+   "task_id": "14a5c2b4b8b1",
+   "tag_id": 30
+  },
+  {
+   "task_id": "1ea7626bc83d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "a99e7448a2c3",
+   "tag_id": 7
+  },
+  {
+   "task_id": "958277bae653",
+   "tag_id": 7
+  },
+  {
+   "task_id": "7eed3021e638",
+   "tag_id": 30
+  },
+  {
+   "task_id": "aafa85aa0513",
+   "tag_id": 30
+  },
+  {
+   "task_id": "8204945441bd",
+   "tag_id": 7
+  },
+  {
+   "task_id": "6948d517f73a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "b1517e8f094e",
+   "tag_id": 7
+  },
+  {
+   "task_id": "bb6e56adaf77",
+   "tag_id": 7
+  },
+  {
+   "task_id": "29b1992aa654",
+   "tag_id": 7
+  },
+  {
+   "task_id": "3c2ec8852351",
+   "tag_id": 30
+  },
+  {
+   "task_id": "c3c67987cad0",
+   "tag_id": 30
+  },
+  {
+   "task_id": "0427c877671a",
+   "tag_id": 7
+  },
+  {
+   "task_id": "9191c6633797",
+   "tag_id": 7
+  },
+  {
+   "task_id": "83f25ca00ac1",
+   "tag_id": 7
+  },
+  {
+   "task_id": "117b493f0473",
+   "tag_id": 7
+  },
+  {
+   "task_id": "b6f98331569b",
+   "tag_id": 30
+  },
+  {
+   "task_id": "805767e03a6f",
+   "tag_id": 30
+  },
+  {
+   "task_id": "e9b26d1d890c",
+   "tag_id": 7
+  },
+  {
+   "task_id": "f7e50236dff2",
+   "tag_id": 7
+  },
+  {
+   "task_id": "10fc2068415d",
+   "tag_id": 7
+  },
+  {
+   "task_id": "8850b14106be",
+   "tag_id": 7
+  },
+  {
+   "task_id": "962abdeda947",
+   "tag_id": 30
+  },
+  {
+   "task_id": "da73c8823ccf",
+   "tag_id": 30
+  },
+  {
+   "task_id": "4389c8fd22d7",
+   "tag_id": 34
+  },
+  {
+   "task_id": "3d04461f1620",
+   "tag_id": 34
+  },
+  {
+   "task_id": "6854a431-c894-4edf-890e-92ea72c03f06",
+   "tag_id": 429
+  },
+  {
+   "task_id": "6854a431-c894-4edf-890e-92ea72c03f06",
+   "tag_id": 18
+  },
+  {
+   "task_id": "e7e0a154-46a5-47ad-8717-2556e253b5a9",
+   "tag_id": 359
+  },
+  {
+   "task_id": "e7e0a154-46a5-47ad-8717-2556e253b5a9",
+   "tag_id": 430
+  },
+  {
+   "task_id": "bee5cdb9-df5e-4ffb-85b6-e2aa14b33f14",
+   "tag_id": 359
+  },
+  {
+   "task_id": "bee5cdb9-df5e-4ffb-85b6-e2aa14b33f14",
+   "tag_id": 430
+  },
+  {
+   "task_id": "eafec931-d91b-47af-93fb-67d47699e16c",
+   "tag_id": 359
+  },
+  {
+   "task_id": "eafec931-d91b-47af-93fb-67d47699e16c",
+   "tag_id": 430
+  },
+  {
+   "task_id": "8c8ca084-6514-4265-83a4-cd86b7d43d02",
+   "tag_id": 429
+  },
+  {
+   "task_id": "8c8ca084-6514-4265-83a4-cd86b7d43d02",
+   "tag_id": 13
+  },
+  {
+   "task_id": "cb618ae8-d7aa-46e7-af8d-23d45a18e811",
+   "tag_id": 431
+  },
+  {
+   "task_id": "cb618ae8-d7aa-46e7-af8d-23d45a18e811",
+   "tag_id": 432
+  },
+  {
+   "task_id": "659b8f5f-bc88-44bc-a76b-ac29da3ab4f4",
+   "tag_id": 431
+  }
+ ],
+ "persona": [
+  {
+   "key": "serious_streak",
+   "value": "0",
+   "updated": 1790849332
+  }
+ ],
+ "observations": [
+  {
+   "id": 1,
+   "ts": 1790849330,
+   "kind": "fact",
+   "text": "主人在下班后仍持续投入女仆项目,初步假设:对这个项目有真实热情"
+  }
+ ],
+ "memories": [
+  {
+   "id": 1,
+   "ts": 1790849726,
+   "kind": "fact",
+   "text": "主人喜欢紫色调的界面",
+   "source_session": null
+  },
+  {
+   "id": 2,
+   "ts": 1790857037,
+   "kind": "fact",
+   "text": "主人规划:2026下半年主攻发论文(英语只简单学),2027上半年雅思冲刺通过;单词书顺序:胜经2820→真经3631→词根4472(后两本明年上半年)。",
+   "source_session": null
+  },
+  {
+   "id": 3,
+   "ts": 1790857080,
+   "kind": "fact",
+   "text": "国庆假期为 10-1 至 10-7 共 7 天;师兄论文、零跑等\"国庆弄完\"的任务以 10-7 为限。",
+   "source_session": null
+  }
+ ],
+ "session_notes": [
+  {
+   "id": 1,
+   "ts": 1790849726,
+   "topic": "记忆系统上线",
+   "text": "阶段6自研记忆桥落地,三表+三工具"
+  }
+ ],
+ "settings": [
+  {
+   "key": "dnd_until",
+   "value": "1790417220"
+  },
+  {
+   "key": "dnd_night_end",
+   "value": "8"
+  },
+  {
+   "key": "cooldown_ratio",
+   "value": "0.25"
+  },
+  {
+   "key": "cooldown_fallback",
+   "value": "3600"
+  },
+  {
+   "key": "escalate_nags",
+   "value": "3"
+  },
+  {
+   "key": "crisis_importance",
+   "value": "1.0"
+  },
+  {
+   "key": "poll_interval",
+   "value": "1200"
+  },
+  {
+   "key": "max_concurrent",
+   "value": "3"
+  },
+  {
+   "key": "llm_model",
+   "value": ""
+  },
+  {
+   "key": "window_width",
+   "value": "480"
+  },
+  {
+   "key": "window_height",
+   "value": "500"
+  },
+  {
+   "key": "notify_sound",
+   "value": "1"
+  },
+  {
+   "key": "notify_volume",
+   "value": "100"
+  },
+  {
+   "key": "ai_disabled",
+   "value": "1"
+  }
+ ]
+}
