@@ -1,0 +1,6 @@
+# dsh-anima 开发 overlay — 用法:
+#   cd C:\Users\Dao\Code\dao1023\deepseek-harness
+#   pnpm dsh web --patch C:\Users\Dao\Code\dao1023\anima\plugin\cordis.yml
+- insert:
+    - id: dsh-anima
+      name: 'C:\Users\Dao\Code\dao1023\anima\plugin\src\index.ts'

@@ -1,0 +1,8 @@
+{
+  "name": "dsh-anima",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "数字生命女仆的档案工具:双驱动任务库的原生会话内访问",
+  "main": "src/index.ts"
+}
