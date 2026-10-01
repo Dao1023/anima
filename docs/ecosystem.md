@@ -142,3 +142,5 @@ dsh-TUI 3802 → deep-whale 2279 → …幂律长尾,#100=128★,#200=64★。
    若 dsh-std 收敛,dsh-anima 的工具面加一层 adapter 即可迁移,facet 模型对"女仆会话×微信×
    headless 多形态"天然对口
 3. **观察清单+1**:dsh-std / dsh-ecosystem-spec / Pi ABI 三者的收敛进度,季度复查一次
+
+> 完整物种图鉴(Top 200 逐个归类)见 [ecosystem-catalog.md](ecosystem-catalog.md)。
