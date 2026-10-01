@@ -17,7 +17,9 @@ const WASM = path.join(ROOT, 'node_modules', '@tensorflow', 'tfjs-backend-wasm',
 const CAMERA = 'FHD Camera';
 
 function grabFrame(out) {
-  // 连拍 8 帧:摄像头自动曝光需要几帧才稳定,取最后一帧
+  // 摄像头独占:先杀残留 ffmpeg(僵尸进程锁死设备),再连拍 8 帧取最后一帧(自动曝光需要几帧)
+  try { execFileSync('taskkill', ['/IM', 'ffmpeg.exe', '/F'], { stdio: 'pipe' }); } catch { /* 无残留 */ }
+  Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, 500);
   const seq = out.replace(/\.jpg$/, '') + '%02d.jpg';
   try {
     execFileSync('ffmpeg', ['-hide_banner', '-loglevel', 'error', '-f', 'dshow',
