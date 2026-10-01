@@ -331,6 +331,7 @@ export function apply(ctx: Context) {
       render: (_args, value) => ([{ type: 'text', text: value.message }]),
     },
     async execute(args) {
+      if (!args.id) throw new Error('id 必填(task_query 返回的 id)')
       const db = openArchive(false)
       try {
         db.exec('BEGIN')
@@ -361,11 +362,11 @@ export function apply(ctx: Context) {
               db.prepare(`
                 INSERT INTO tasks (id, title, note, drive, is_cyclic, priority, status, created, snooze_until)
                 VALUES (?, ?, ?, 'end', 1, 3, 'active', ?, NULL)
-              `).run(newId, row.title, null, nowSec)
+              `).run(newId, row.title as string, null, nowSec)
               db.prepare(`
                 INSERT INTO schedule (task_id, deadline, anchor, expected_duration, recurrence_interval)
                 VALUES (?, ?, NULL, NULL, ?)
-              `).run(newId, newDeadline, row.recurrence_interval)
+              `).run(newId, newDeadline, row.recurrence_interval as number)
               action = '完成并克隆下一期'
               extra = ` 新一期截止 ${new Date(newDeadline * 1000).toISOString().slice(0, 10)}。`
             }
@@ -411,6 +412,7 @@ export function apply(ctx: Context) {
       render: (_args, value) => ([{ type: 'text', text: value.message }]),
     },
     async execute(args) {
+      if (!args.id) throw new Error('id 必填(task_query 返回的 id)')
       const db = openArchive(false)
       try {
         const row = db.prepare(`
