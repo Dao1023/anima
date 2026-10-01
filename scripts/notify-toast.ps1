@@ -7,9 +7,21 @@ param(
   [Parameter(Mandatory)][string]$Text,
   [string]$Title = '',
   [string]$Image = '',
+  [string]$Meme = '',      # 表情包前缀,如 praise / nudge / morning;随机挑一张
   [switch]$Long,
   [switch]$Silent   # 不响声
 )
+
+$ErrorActionPreference = 'Stop'
+
+# -Meme: 从 ~/.anima/memes 按关键词匹配文件名随机挑一张(命名[意思]_[人物]_[动作])
+if ($Meme -and -not $Image) {
+  $dir = Join-Path $env:USERPROFILE '.anima\memes'
+  $pick = Get-ChildItem $dir -File -ErrorAction SilentlyContinue |
+    Where-Object { $_.Extension -match '\.(png|jpg|jpeg|gif)$' -and $_.Name -match [regex]::Escape($Meme) } |
+    Get-Random -Count 1
+  if ($pick) { $Image = $pick.FullName }
+}
 
 $ErrorActionPreference = 'Stop'
 
