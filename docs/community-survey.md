@@ -35,7 +35,7 @@
 │  dsh-cron ──coldWake──▶ 女仆常驻会话(微信绑定)       │
 │    ↑cron工具            │                          │
 │    │                    ▼                          │
-│  task-brain skill ◀─ 🧩 dsh-task-brain 插件(自建,唯一)│
+│  task-brain skill ◀─ 🧩 dsh-anima 插件(自建,唯一)│
 │  (判定协议/人设/字条)      task_query / task_update   │
 │    │                    / alarm_reschedule         │
 │    │                    ▼                          │
@@ -50,7 +50,7 @@
 **职责重划**:
 - 闹钟 = dsh-cron(女仆用 cron_add/update/remove 管理自己的闹钟,重排闹钟 = cron 工具调用)
 - 醒来后的判断 = task-brain skill(三条判定协议不变,人设不变)
-- 档案读写 = dsh-task-brain 插件(SQLite + log 公式 + 周期克隆,核心 IP 一个字不改,只是从 REST 外壳换成原生工具外壳)
+- 档案读写 = dsh-anima 插件(SQLite + log 公式 + 周期克隆,核心 IP 一个字不改,只是从 REST 外壳换成原生工具外壳)
 - 记忆 = dsh-mnemon(画像自动注入 + 档案 provider 桥)
 - 节律四态 → 语义平移:休眠=退出客户端;睡眠=coldWake 关+仅心跳;待机/工作=cron 任务密度差异(具体节奏靠 cron 安排表达,不再需要自建状态机)
 
@@ -61,7 +61,7 @@
 | **0 保险** | 装 dsh-undo-savepoint;把 data/ 从消息级撤销跟踪排除 | SAFE MODE 可用 |
 | **1 宿主** | 装 dsh-desktop,日常使用迁过去 | 关窗后任务照跑;托盘常驻过夜 |
 | **2 闹钟** | 装 dsh-cron,开 coldWake | 女仆会话被定时唤醒并应答;错过合并语义实测 |
-| **3 插件**⭐ | 写 dsh-task-brain(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
+| **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
 | **4 灵魂** | task-brain skill 改版:闹钟命令换成 cron 工具,档案命令换成原生工具 | 一次唤醒内完成"读字条→查档案→判定→说话→重排" |
 | **5 触达** | dsh-im 微信通道 + Bark 兜底 | 手机收到女仆的话,回复进同一会话 |
 | **6 记忆** | dsh-mnemon + 档案 provider 桥 | 跨唤醒画像连续;档案事实可被召回 |

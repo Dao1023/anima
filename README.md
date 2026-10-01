@@ -1,4 +1,4 @@
-# dsh-task-brain · 数字生命女仆
+# dsh-anima · 数字生命女仆
 
 > DeepSeek Harness 插件:把 SQLite 双驱动任务档案暴露为会话内原生工具,
 > 让一个被 dsh-cron 定时唤醒的女仆会话读档案、判定该不该开口、重排自己的闹钟。
@@ -13,7 +13,7 @@
 |---|---|---|
 | dsh-desktop | 🔵 社区 | 常驻托盘守夜 |
 | dsh-cron | 🔵 社区 | 闹钟:cron/at + coldWake 冷唤醒 |
-| **dsh-task-brain(本仓库)** | ⭐ 自建 | task_query / task_update / alarm_reschedule 原生工具 |
+| **dsh-anima(本仓库)** | ⭐ 自建 | task_query / task_update / alarm_reschedule 原生工具 |
 | SQLite 双驱动档案 | ⭐ 自建 | start `log(间隔/周期)` / end `-log(剩余)` / 周期克隆 |
 | dsh-im + Bark | 🔵 社区 | 微信双向聊天窗 + 锁屏保底 |
 | dsh-mnemon | 🔵 社区 | 跨会话记忆 + 档案 provider 桥 |

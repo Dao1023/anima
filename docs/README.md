@@ -1,6 +1,6 @@
 # 数字生命 · 设计文档
 
-> V4.2。**社区组装 + 唯一自建插件**:dsh-desktop 常驻守夜 · dsh-cron 闹钟 · dsh-task-brain 插件(自建) ·
+> V4.2。**社区组装 + 唯一自建插件**:dsh-desktop 常驻守夜 · dsh-cron 闹钟 · dsh-anima 插件(自建) ·
 > dsh-im 微信触达 · dsh-mnemon 记忆 · SQLite 双驱动档案(核心 IP)。
 > 演进史(V1 哑终端 → V2 常驻服务 → V4 daemon → V4.2 社区组装)见 git 历史与各文档"退役"注记。
 

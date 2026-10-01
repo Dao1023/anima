@@ -198,7 +198,7 @@ WHERE g.name = 'genshin';   -- 或 != 'genshin' 隐藏
 V2 的 core/io/app 分层与 REST 服务面已随架构翻转退役(git 历史可查)。当前规划:
 
 - **表结构与动作语义(上表)全部存活**——它们是"档案"的规范,与外壳无关
-- 读写外壳 = dsh-task-brain 插件(会话内原生工具,execute 接 SQLite + actions 校验),规划见 [community-survey.md](community-survey.md) 阶段 3
+- 读写外壳 = dsh-anima 插件(会话内原生工具,execute 接 SQLite + actions 校验),规划见 [community-survey.md](community-survey.md) 阶段 3
 - 写入路径继续过 `core/actions.py` 的业务校验(AI 不裸写库的原则从 V2 继承)
 - `/docs` Swagger 等旧 REST 面板接口随旧服务退役;前端面板 V4.2 起不再维护
 

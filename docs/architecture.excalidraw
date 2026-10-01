@@ -161,7 +161,7 @@
       "strokeWidth": 1, "strokeStyle": "solid", "roughness": 0, "opacity": 100,
       "groupIds": [], "frameId": null, "roundness": null, "seed": 900017, "version": 1, "versionNonce": 100017,
       "isDeleted": false, "boundElements": null, "updated": 1735000000000, "link": null, "locked": false,
-      "text": "dsh-task-brain ⭐\n唯一自建插件\ntask_query / task_update\n/ alarm_reschedule\n(写入过校验)", "originalText": "dsh-task-brain ⭐\n唯一自建插件\ntask_query / task_update\n/ alarm_reschedule\n(写入过校验)",
+      "text": "dsh-anima ⭐\n唯一自建插件\ntask_query / task_update\n/ alarm_reschedule\n(写入过校验)", "originalText": "dsh-anima ⭐\n唯一自建插件\ntask_query / task_update\n/ alarm_reschedule\n(写入过校验)",
       "fontSize": 13, "fontFamily": 2, "textAlign": "center", "verticalAlign": "middle", "containerId": "plugin", "lineHeight": 1.25, "baseline": 11
     },
 
