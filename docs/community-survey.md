@@ -62,10 +62,10 @@
 | **0.5 开发规范** ✅ | 已读一手官方文档(见 [dev-spec.md](dev-spec.md))。纠正:开发迭代=源码 checkout+`--patch` overlay+官方 HMR,与市场热挂载(安装通道)无关;工具规范/能力分层/cron 官方模式均已消化 | dev-spec.md 为准 |
 | **0.7 生态调查** ✅ | 见 [ecosystem.md](ecosystem.md) + [ecosystem-catalog.md](ecosystem-catalog.md):六层框架/七生态位/Top200 全图鉴/dsh-std 验证。新知:官方 `packages/schedule` 在路上;lowtide(错峰委派)/run2skill(习惯→技能)/auto-review(审批护栏)三个参考物种;情绪价值带=装机基本盘 | 200 物种全录 |
 | **1 宿主** | 先观察现官方客户端关窗是否托盘常驻;否 → 装 [dsh-desktop](https://github.com/bruc3van/dsh-desktop) | 关窗后任务照跑;托盘常驻过夜 |
-| **1.5 源码 checkout** | clone deepseek-harness(`--patch`+HMR 的物理前提) | `pnpm dsh web --patch` 能起 |
-| **2 闹钟** | **先评估再装**:升级后本机是否已有原生 schedule;无 → 装 dsh-cron(冷门器官,留官方迁移缝) | 女仆会话被定时唤醒并应答;错过合并实测 |
-| **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 SQLite 读事务 + actions 校验;**档案放 ~/.anima/**(工作区外,回滚够不着) | 会话内模型能查档案、改任务、重排闹钟;三层测试法(纯函数单测→契约→实机) |
-| **4 灵魂** | task-brain skill 改版:闹钟命令换成 cron 工具,档案命令换成原生工具 | 一次唤醒内完成"读字条→查档案→判定→说话→重排" |
+| **1.5 源码 checkout** ✅ | 已完成:`C:\Users\Dao\Code\dao1023\deepseek-harness`(浅克隆 26s,14,104 文件);`pnpm install` + `pnpm run build` 均成功;`pnpm dsh --version`=0.2.0-rc.2、`pnpm dsh web --help` 可用。开发回路就绪:`pnpm run dev:web`(HMR)/`pnpm dsh web --patch <overlay>` | ✅ 源码启动器可用 |
+| **2 闹钟** ✅ **原生就有,无需 dsh-cron** | 官方可选 bundle `@deepseek-ai/dsh-experimental-schedule-bundle`(随每次安装携带、默认禁用;插件管理页官方分组「自动化任务」启用)。源码实测能力:`after/at/every/daily/weekly/cron(五字段+IANA时区)`;Host 级持久化,重启保留;**投递时宿主恢复原 Session(含未加载的)→ 冷唤醒内建**;错过只发最新一次(不累积)→ 与我们"错过合并"语义一致;模型工具 `schedule_create/list/update/delete`;`time-context` 每步追加时钟读数。替代:社区 dsh-cron(冷门 347 装机/月)不再需要 | 启用后设一条 2 分钟测试提醒,到点消息进原会话 |
+| **3 插件**⭐ **范围缩小** | 写 dsh-anima(hello-plugin 骨架):**只做档案工具** `task_query`/`task_update`(闹钟交给原生 `schedule_*`,原计划的 `alarm_reschedule` 取消),execute 接 SQLite 读事务 + actions 校验;**档案放 `~/.anima/`**(工作区外,回滚够不着) | 会话内模型能查档案、改任务;三层测试法(纯函数单测→契约→实机) |
+| **4 灵魂** | task-brain skill 改版:闹钟用原生 `schedule_*`,档案用 dsh-anima 工具 | 一次唤醒内完成"读字条→查档案→判定→说话→重排" |
 | **5 触达** | dsh-im 微信通道 + Bark 兜底 | 手机收到女仆的话,回复进同一会话 |
 | **6 记忆** | dsh-mnemon + 档案 provider 桥(**13 物种混战位,provider 化留切换缝**) | 跨唤醒画像连续;档案事实可被召回 |
 | **7 人格** ⬆ | **优先级上调**(生态实证:情绪价值=装机基本盘)。人格变量入 SQLite:可爱/严肃/好感度,由任务完成情况驱动;借 dsh-pet 的 voice.json 数据包范式 + tavern 的 MVU 变量;解剖 lowtide(节律)与 run2skill(沉淀) | 连续敷衍→严肃模式实测触发 |
