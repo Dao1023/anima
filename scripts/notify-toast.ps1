@@ -25,7 +25,28 @@ if ($Meme -and -not $Image) {
 
 $ErrorActionPreference = 'Stop'
 
-# 加载 WinRT(零依赖,PoSh7 直接用)
+# hero 图槽约 2:1,比例不符会被裁剪。等比缩放+白底补边(letterbox),内容零裁剪。
+function Get-HeroImage([string]$src) {
+  Add-Type -AssemblyName System.Drawing
+  $img = [System.Drawing.Image]::FromFile($src)
+  try {
+    $targetW = 364; $targetH = 182
+    $scale = [math]::Min($targetW / $img.Width, $targetH / $img.Height)
+    $w = [int]($img.Width * $scale); $h = [int]($img.Height * $scale)
+    $bmp = New-Object System.Drawing.Bitmap($targetW, $targetH)
+    $g = [System.Drawing.Graphics]::FromImage($bmp)
+    $g.Clear([System.Drawing.Color]::White)
+    $g.InterpolationMode = 'HighQualityBicubic'
+    $g.DrawImage($img, [int](($targetW - $w) / 2), [int](($targetH - $h) / 2), $w, $h)
+    $g.Dispose()
+    $out = Join-Path $env:TEMP 'anima-meme-hero.png'
+    $bmp.Save($out, [System.Drawing.Imaging.ImageFormat]::Png)
+    $bmp.Dispose()
+    return ($out -replace '\\','/')
+  } finally { $img.Dispose() }
+}
+
+# 加载 WinRT(零依赖,Windows PowerShell 5.1 的 .NET Framework 自带投影)
 [void][Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime]
 [void][Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime]
 
@@ -34,7 +55,7 @@ $appId = '{1AC14E77-02E7-4E5D-B744-2EB1AE5198B7}\WindowsPowerShell\v1.0\powershe
 
 $t = [System.Security.SecurityElement]::Escape($Text)
 $titleXml = if ($Title) { "<text>$([System.Security.SecurityElement]::Escape($Title))</text>" } else { '' }
-$imgXml   = if ($Image -and (Test-Path $Image)) { "<image placement='hero' src='file:///$($Image -replace '\\','/')'/>" } else { '' }
+$imgXml   = if ($Image -and (Test-Path $Image)) { "<image placement='hero' src='file:///$(Get-HeroImage $Image)'/>" } else { '' }
 $duration = if ($Long) { 'long' } else { 'short' }
 $sound    = if ($Silent) { ' silent=' + "'" + 'true' + "'" + '' } else { '' }
 
