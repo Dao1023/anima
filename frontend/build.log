@@ -1,0 +1,17 @@
+$ vite build
+vite v6.4.3 building for production...
+transforming...
+✓ 1685 modules transformed.
+✗ Build failed in 11.43s
+error during build:
+[vite:esbuild-transpile] remove C:\Users\Dao\Code\dao1023\anima\frontend\.tmp\esbuild-c059a55882550be785d1938399a9be07b77d3676d5ab5f01ec19a37a8d763b44: Access is denied.
+    at C:\Users\Dao\Code\dao1023\anima\frontend\node_modules\.pnpm\esbuild@0.25.0\node_modules\esbuild\lib\main.js:738:38
+    at responseCallbacks.<computed> (C:\Users\Dao\Code\dao1023\anima\frontend\node_modules\.pnpm\esbuild@0.25.0\node_modules\esbuild\lib\main.js:623:9)
+    at handleIncomingPacket (C:\Users\Dao\Code\dao1023\anima\frontend\node_modules\.pnpm\esbuild@0.25.0\node_modules\esbuild\lib\main.js:677:31)
+    at Socket.readFromStdout (C:\Users\Dao\Code\dao1023\anima\frontend\node_modules\.pnpm\esbuild@0.25.0\node_modules\esbuild\lib\main.js:601:7)
+    at Socket.emit (node:events:509:28)
+    at addChunk (node:internal/streams/readable:563:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:514:3)
+    at Readable.push (node:internal/streams/readable:394:5)
+    at Pipe.onStreamRead (node:internal/stream_base_commons:189:23)
+[ELIFECYCLE] Command failed with exit code 1.
