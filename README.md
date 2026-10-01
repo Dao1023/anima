@@ -1,41 +1,36 @@
-# dsh-anima · 数字生命女仆
+# dsh-anima · 数字生命女仆(账本时代)
 
-> DeepSeek Harness 插件:把 SQLite 双驱动任务档案暴露为会话内原生工具,
-> 让一个被 dsh-cron 定时唤醒的女仆会话读档案、判定该不该开口、重排自己的闹钟。
+> 一个住在 DeepSeek Harness 里的女仆:值班室会话被原生 schedule 闹钟唤醒,
+> 读一个 markdown 账本、自己判断该不该开口、自己改账本、git commit 留痕。
+> 没有自建插件,没有数据库——唯一的数据是一个文件加它的 git 历史。
 >
 > **设计宪法**(三次架构翻转零改动):
 > 1. 闹钟就是闹钟,女仆才是决策者
 > 2. 先定基本方向,未来慢慢调整
 
-## 组成(V4.2,社区组装 + 本插件为唯一自建)
+## 运行形态(V5,2026-10-01 改革后)
 
-| 件 | 来源 | 职责 |
-|---|---|---|
-| dsh-desktop | 🔵 社区 | 常驻托盘守夜 |
-| dsh-cron | 🔵 社区 | 闹钟:cron/at + coldWake 冷唤醒 |
-| **dsh-anima(本仓库)** | ⭐ 自建 | task_query / task_update / alarm_reschedule 原生工具 |
-| SQLite 双驱动档案 | ⭐ 自建 | start `log(间隔/周期)` / end `-log(剩余)` / 周期克隆 |
-| dsh-im + Bark | 🔵 社区 | 微信双向聊天窗 + 锁屏保底 |
-| dsh-mnemon | 🔵 社区 | 跨会话记忆 + 档案 provider 桥 |
+| 件 | 职责 |
+|---|---|
+| DSH 原生 schedule | 闹钟:每日晨间钟 + 女仆自排的心跳,到点 follow-up 唤醒值班室会话 |
+| `C:\Users\Dao\anima-home\ledger\tasks.md` | **账本**:任务 + 长期备注的唯一真相,git 管历史 |
+| `skills/task-brain/` | 女仆大脑:醒来流程 / 判定协议 / 触达方式(装在值班室 `.agents/skills/`) |
+| `scripts/` | 手脚:sense-master 探针、notify-toast/popup 通知、maid-log 监工日志 |
+| `~\.anima\` | 遗产:memes 表情包(在用)+ archive.db.retired(退役档案) |
 
 ## 仓库结构
 
 ```
-docs/            设计文档(导航见 docs/README.md)
-  community-survey.md   选型依据 + 七阶段施工路线图
-  architecture.excalidraw  V4.2 组成架构(活画布)
-  rhythm.md / task-system.md / schema.md / lessons.md
-data/            本地数据(gitignored: assistant.db 档案 + key)
-plugin/          TS 插件源码(阶段 3 落地)
-engine/          档案引擎(双驱动公式+actions 校验,阶段 3 从旧仓库移植)
+skills/task-brain/   女仆大脑(源,改动后同步到值班室)
+scripts/             探针 / 通知 / 监工
+frontend/            旧 Vue 面板(V5 起退役,留作参考)
+plugin/              旧 DSH 插件(V5 起退役,留作参考)
+docs/                设计文档(导航见 docs/README.md)
+migration/           V4.2→V5 迁移快照(archive-snapshot.json)
 ```
 
-## 施工路线图(摘自 docs/community-survey.md)
+## 历史
 
-0. dsh-undo-savepoint 保险 → 1. dsh-desktop 宿主 → 2. dsh-cron 唤醒
-→ **3. 本插件(核心)** → 4. skill 改版 → 5. 微信触达 → 6. 记忆 → 7. 人格变量
-
-## 血统
-
-fork 自 `claude-assistant`(V1 哑终端 → V2 常驻服务 → V4 daemon,git 历史在那边)。
-档案数据 `data/assistant.db` 从旧仓库平移,单一事实源从此在本仓库。
+fork 自 `claude-assistant`(V1 哑终端 → V2 常驻服务 → V4 daemon),
+经 V4.2 SQLite 双驱动档案时代,2026-10-01 起进入账本时代。
+V4.2 设计文档在 [docs/museum-v4.2/](docs/museum-v4.2/),更早的血统在 git 历史。
