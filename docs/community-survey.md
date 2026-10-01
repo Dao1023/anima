@@ -58,7 +58,8 @@
 
 | 阶段 | 动作 | 验收标准 |
 |---|---|---|
-| **0 保险** ✅ | 已完成:dsh-undo-savepoint 装入 desktop profile(重启生效)。排除方案升级:阶段 3 把档案库移出会话工作区(~/.anima/),消息级回滚天然不可及 | SAFE MODE 可用 |
+| **0 保险** ✅ | **天生满足**:官方 harness 内置 undo-savepoint(本会话实测 undo_list 可用,快照自 10-01 起存在)。手动安装的一份因可能造成 bundles 重复条目已回退。档案保护:阶段 3 把库放 ~/.anima/(工作区外) | SAFE MODE 可用 |
+| **0.5 热载认知** ✅ | 实测结论:市场插件热挂载**仅限 web profile**(纯 id/name patch,自动刷新);desktop profile 改动必须重启。→ 插件开发期优先在 web profile 迭代(热载快),定版后同步 desktop | web 里装插件不重启即生效 |
 | **1 宿主** | 装 dsh-desktop,日常使用迁过去 | 关窗后任务照跑;托盘常驻过夜 |
 | **2 闹钟** | 装 dsh-cron,开 coldWake | 女仆会话被定时唤醒并应答;错过合并语义实测 |
 | **3 插件**⭐ | 写 dsh-anima(hello-plugin 骨架):task_query/task_update/alarm_reschedule 三工具,execute 接 better-sqlite3 读事务 + actions 校验 | 会话内模型能查档案、改任务、重排 cron;三层测试法(纯函数单测→契约→实机) |
