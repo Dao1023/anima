@@ -104,3 +104,41 @@ dsh-TUI 3802 → deep-whale 2279 → …幂律长尾,#100=128★,#200=64★。
    我们迁到原生,闹钟语义(闹钟就是闹钟)不变
 4. **情绪价值是基本盘**:装机王是桌宠(24.5k/月),不是工具。anima 的女仆人格+视觉层
    不是锦上添花,是生态已验证的用户入口——`阶段7人格` 的优先级可以上调
+
+---
+
+# III · dsh-std 验证(独立框架对照实验)
+
+> 规则:先独立调查画框架(I/II),再用 dsh-std 检验。以下为对照结果。
+
+## dsh-std 事实([Yan-Zero/dsh-std](https://github.com/Yan-Zero/dsh-std),133★,2026-08 创建)
+
+**社区通用互操作协议标准**,不是工具库:
+
+- `@dsh-std/core` = **元协议**(协议的协议):只定义协议如何声明(`apiVersion+kind`)、
+  参与者如何申报能力(`requires`/`supports`)、纯函数协商出兼容报告。零业务字段,类比 USB 规范
+- 其上是独立版本化的**领域协议**:connection/command/tool/model/presentation/session/agent
+- **适配器当减震器**:`@dsh-std/adapter-dsh` 单点吸收上游 DSH 破坏性变更,插件只对协议编程
+  → 一次编写,在 TUI/Web/SSH 远程/headless 守护进程全形态运行(facet 按需激活)
+- 静态清单(dsh-plugin.json)让市场/宿主**不跑一行插件代码**即可算出兼容性
+- Profile 层由生态项目承载(如 [T-Auto/dsh-ecosystem-spec](https://github.com/T-Auto/dsh-ecosystem-spec) 的 TUI Profile)
+- 状态:**early drafts**,自愿采纳,声明符合即须过一致性套件
+- 周边信号:第三方伞仓库按"Pi / DSH官方 / DSH-Store准入 / dsh-std协议"四契约校验自有插件;
+  又发现两个此前未收录的商店(dshplugin.store、dsh.deepseek404.com)
+
+## 对照打分
+
+| 预测 | 结果 |
+|---|---|
+| "若存在 std,位置在官方 seam 与万千插件之间" | ✅ **位置命中**:dsh-std 正是上游核心与下游生态之间的解耦层 |
+| "性质=共享原语/工具库" | ❌ **性质错了一半**:不是 stdlib,是**互操作协议+能力协商标准**(USB,不是 lodash) |
+| 完全没看到的 | ①"宪法运动"生态位:多套契约并存竞争(Pi ABI/DSH-Store 准入/dsh-std/ecosystem-spec)——标准化政治是独立生态位;②宿主矩阵碎片化(TUI/Web/headless × 各壳)是 std 的第一驱动力,我 Layer2 只列了形态没看出它们互不兼容这个痛点 |
+
+## 对 anima 的推论
+
+1. **现在不押注**:early drafts + 单人维护 + 133★,还不是关键种;dsh-anima v1 直接用官方
+   `ctx.tools` 规范(官方文档即事实标准)
+2. **保持同构直觉**:我们 V4.1 的 Agent Gateway(契约非软件)与 dsh-std 元协议是同一种本能——
+   若 dsh-std 收敛,dsh-anima 的工具面加一层 adapter 即可迁移,facet 模型对"女仆会话×微信×
+   headless 多形态"天然对口
+3. **观察清单+1**:dsh-std / dsh-ecosystem-spec / Pi ABI 三者的收敛进度,季度复查一次
