@@ -14,6 +14,7 @@ import { join } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 import type { Context } from '@deepseek-ai/cordis'
 import { defineTool } from '@deepseek-ai/dsh-tools'
+import { addMemoryTools } from './memory.js'
 
 export const name = 'dsh-anima'
 export const inject = ['tools']
@@ -21,16 +22,16 @@ export const inject = ['tools']
 const ARCHIVE_PATH = join(homedir(), '.anima', 'archive.db')
 
 const DAY = 86400
-const nowSec = () => Math.floor(Date.now() / 1000)
+export const nowSec = () => Math.floor(Date.now() / 1000)
 
 /** unix 秒 → 'YYYY-MM-DD HH:MM'(本地时区,面板同款) */
-function fmt(ts: number) {
+export function fmt(ts: number) {
   const d = new Date(ts * 1000), p = (n: number) => String(n).padStart(2, '0')
   return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`
 }
 
 /** 打开档案(只读;不存在时报友好错误) */
-function openArchive(readOnly = true): DatabaseSync {
+export function openArchive(readOnly = true): DatabaseSync {
   try {
     return new DatabaseSync(ARCHIVE_PATH, { readOnly })
   } catch {
@@ -94,6 +95,20 @@ function migratePersona() {
           kind  TEXT NOT NULL,
           text  TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS memories (
+          id             INTEGER PRIMARY KEY AUTOINCREMENT,
+          ts             INTEGER NOT NULL,
+          kind           TEXT NOT NULL DEFAULT 'fact',
+          text           TEXT NOT NULL,
+          source_session TEXT
+        );
+        CREATE INDEX IF NOT EXISTS idx_memories_text ON memories(text);
+        CREATE TABLE IF NOT EXISTS session_notes (
+          id    INTEGER PRIMARY KEY AUTOINCREMENT,
+          ts    INTEGER NOT NULL,
+          topic TEXT NOT NULL,
+          text  TEXT NOT NULL
+        );
       `)
     } finally { db.close() }
   } catch { /* 档案库暂时不可写时静默,工具调用时再报错 */ }
@@ -107,6 +122,7 @@ function getPersona(db: DatabaseSync, key: string, def: number): number {
 
 export function apply(ctx: Context) {
   migratePersona()
+  addMemoryTools(ctx)
   ctx.tools.register(defineTool({
     name: 'task_query',
     description:

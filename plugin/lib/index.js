@@ -13,18 +13,19 @@ import { homedir } from 'node:os';
 import { join } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
 import { defineTool } from '@deepseek-ai/dsh-tools';
+import { addMemoryTools } from './memory.js';
 export const name = 'dsh-anima';
 export const inject = ['tools'];
 const ARCHIVE_PATH = join(homedir(), '.anima', 'archive.db');
 const DAY = 86400;
-const nowSec = () => Math.floor(Date.now() / 1000);
+export const nowSec = () => Math.floor(Date.now() / 1000);
 /** unix 秒 → 'YYYY-MM-DD HH:MM'(本地时区,面板同款) */
-function fmt(ts) {
+export function fmt(ts) {
     const d = new Date(ts * 1000), p = (n) => String(n).padStart(2, '0');
     return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
 }
 /** 打开档案(只读;不存在时报友好错误) */
-function openArchive(readOnly = true) {
+export function openArchive(readOnly = true) {
     try {
         return new DatabaseSync(ARCHIVE_PATH, { readOnly });
     }
@@ -86,6 +87,20 @@ function migratePersona() {
           kind  TEXT NOT NULL,
           text  TEXT NOT NULL
         );
+        CREATE TABLE IF NOT EXISTS memories (
+          id             INTEGER PRIMARY KEY AUTOINCREMENT,
+          ts             INTEGER NOT NULL,
+          kind           TEXT NOT NULL DEFAULT 'fact',
+          text           TEXT NOT NULL,
+          source_session TEXT
+        );
+        CREATE INDEX IF NOT EXISTS idx_memories_text ON memories(text);
+        CREATE TABLE IF NOT EXISTS session_notes (
+          id    INTEGER PRIMARY KEY AUTOINCREMENT,
+          ts    INTEGER NOT NULL,
+          topic TEXT NOT NULL,
+          text  TEXT NOT NULL
+        );
       `);
         }
         finally {
@@ -101,6 +116,7 @@ function getPersona(db, key, def) {
 }
 export function apply(ctx) {
     migratePersona();
+    addMemoryTools(ctx);
     ctx.tools.register(defineTool({
         name: 'task_query',
         description: '查询双驱动任务档案。返回按重要性降序排列的活跃任务列表,每条含:标题、驱动类型(start=越久没做越重要/end=越近截止越急)、重要性分数、截止/预期信息、标签。start 驱动的分数>0 表示超期(该做了);end 驱动的分数>0 表示不足一天截止。用于:女仆醒来判断该提什么、主人问"今天有什么事"。',
