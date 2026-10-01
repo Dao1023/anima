@@ -56,12 +56,29 @@ $window = [Windows.Markup.XamlReader]::Parse($xaml)
 
 if ($Gif -and (Test-Path $Gif)) {
   $img = $window.FindName('MemeImage')
-  $src = New-Object System.Windows.Media.Imaging.BitmapImage
-  $src.BeginInit()
-  $src.UriSource = [Uri]((Resolve-Path $Gif).Path)
-  $src.CacheOption = 'OnLoad'
-  $src.EndInit()
-  $img.Source = $src
+  $dec = [System.Windows.Media.Imaging.GifBitmapDecoder]::new([Uri]((Resolve-Path $Gif).Path),
+          [System.Windows.Media.Imaging.BitmapCreateOptions]::None,
+          [System.Windows.Media.Imaging.BitmapCacheOption]::OnLoad)
+  if ($dec.Frames.Count -gt 1) {
+    # 手动逐帧播放:预解码全部帧(避免播放中解码卡顿),50ms/帧 ≈ 20fps
+    $frames = @($dec.Frames | ForEach-Object { $_ })
+    $img.Source = $frames[0]
+    $script:frameIdx = 0
+    $anim = New-Object System.Windows.Threading.DispatcherTimer
+    $anim.Interval = [TimeSpan]::FromMilliseconds(50)
+    $anim.Add_Tick({
+      $script:frameIdx = ($script:frameIdx + 1) % $frames.Count
+      $img.Source = $frames[$script:frameIdx]
+    })
+    $anim.Start()
+  } else {
+    $src = New-Object System.Windows.Media.Imaging.BitmapImage
+    $src.BeginInit()
+    $src.UriSource = [Uri]((Resolve-Path $Gif).Path)
+    $src.CacheOption = 'OnLoad'
+    $src.EndInit()
+    $img.Source = $src
+  }
   $img.Visibility = 'Visible'
 }
 
@@ -83,7 +100,8 @@ $timer.Start()
 $dispatcher = [System.Windows.Threading.Dispatcher]::CurrentDispatcher
 $end = (Get-Date).AddSeconds($Seconds + 5)
 while ((Get-Date) -lt $end -and $window.IsVisible) {
+  # 高频泵消息(20ms),否则 DispatcherTimer 被卡在 ~10fps
   $dispatcher.Invoke([Action]{}, [System.Windows.Threading.DispatcherPriority]::Background)
-  Start-Sleep -Milliseconds 100
+  Start-Sleep -Milliseconds 20
 }
 Write-Output "popup shown: $Text"
