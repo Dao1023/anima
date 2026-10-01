@@ -8,3 +8,4 @@ pytest-of*/
 scripts/master.json
 scripts/.frame*.jpg
 scripts/face-*.jpg
+scripts/.screen.jpg
