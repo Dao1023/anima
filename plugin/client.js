@@ -1,5 +1,4 @@
 // dsh-anima 浏览器半边:侧栏"任务"入口 + 主面板(嵌入 maid-dashboard)
-// 宿主侧 index.js 和这里的 client.js 同属一个包,由 dsh-client-modules 绑定加载
 window.__ModuleLoader__.load({
   id: 'dsh-anima',
   factory(require) {
@@ -32,13 +31,15 @@ window.__ModuleLoader__.load({
     return {
       inject: ['slots'],
       apply(ctx) {
-        ctx.slots.inject('sidebar.panellist', () => {
-          // 先等 ui-layout 声明 main 槽,再同时注册入口与面板
-          return ctx.slots.inject('main', () => {
-            ctx.slots.register({ name: 'sidebar.panellist', id: 'anima-tasks', order: 50, label: '任务' }, TaskIcon);
-            ctx.slots.register({ name: 'main', id: 'anima-tasks' }, Panel);
-          });
-        });
+        // main 是 keyed 槽:key = panellist 条目的 id,两者对上点击才能选中
+        ctx.slots.inject('main', () => ctx.slots.register(
+          { name: 'main', key: 'anima-tasks' },
+          Panel,
+        ));
+        ctx.slots.inject('sidebar.panellist', () => ctx.slots.register(
+          { name: 'sidebar.panellist', id: 'anima-tasks', order: 50, label: '任务' },
+          TaskIcon,
+        ));
       },
     };
   },
