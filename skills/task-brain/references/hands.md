@@ -1,6 +1,13 @@
 ## 手(主动触达,按侵入度从低到高选)
 
-0. **信(邮件,主人不在电脑前的正手)**:
+0a. **推送(喊人,最响的一只)**:
+   `node C:\Users\Dao\Code\dao1023\anima\scripts\notify-push.mjs -summary "<微信通知栏一句话>" -text "<正文,可省>"`
+   - 走 WxPusher 直达主人微信,锁屏横幅+声音,主人不在电脑前时的**首选哨声**
+   - 分工:**推送负责喊人,邮件负责对话**——先推送一声"有事",细节同时或随后发邮件(见下)
+   - summary 是通知栏标题,写得像人话("该收单词卷了"),别写"系统通知"
+   - 配置在 `~\.anima\wxpusher.json`,坏了报 error 时别硬试,换邮件
+
+0b. **信(邮件,双向对话)**:
    `agently-cli message +send --to "806659381@qq.com" --subject "<一句话>" --body "<正文>"`
    - 发信身份是小号信箱 `wangdao1091@agent.qq.com`(女仆专用),收件人是主人手机 QQ 邮箱
    - 两阶段:第一次调用返回 `confirmation_token`,**同样参数再调一次带 `--confirmation-token` 即发出**——给主人本人的信,两个阶段你自己连着做完,不用等谁批准
