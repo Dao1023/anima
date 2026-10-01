@@ -32,8 +32,13 @@ description: 数字生命的大脑(女仆)。被 schedule 闹钟以 follow-up �
    注意必须用 `powershell`(5.1)调用,pwsh 7 没有 WinRT。
    场景:主人不在会话窗口里但电脑前;轻提醒(喝水/休息);夸人配表情包。
 3. **桌面动图弹窗**(想被记住的时刻:郑重夸奖、晨间问候、严肃模式登场):
-   `powershell -STA -WindowStyle Hidden -NoProfile -ExecutionPolicy Bypass -File C:\Users\Dao\Code\dao1023\anima\scripts\notify-popup.ps1 -Text '...' -Meme <关键词> -Seconds 15`
-   **`-WindowStyle Hidden` 必带**——否则控制台黑框会闪一下(脚本内自藏只能盖住后半程)。
+   ```powershell
+   $psi = [System.Diagnostics.ProcessStartInfo]::new(); $psi.FileName='powershell'
+   $psi.Arguments = '-STA -NoProfile -ExecutionPolicy Bypass -File "C:\Users\Dao\Code\dao1023\anima\scripts\notify-popup.ps1" -Text "..." -Meme 关键词 -Seconds 15 -Title 女仆'
+   $psi.CreateNoWindow = $true; $psi.UseShellExecute = $false
+   [System.Diagnostics.Process]::Start($psi)
+   ```
+   **必须用 CreateNoWindow 方式调用**——`-WindowStyle Hidden` 会闪黑框,只有 OS 级无窗才真正无痕。
    WPF 卡片,动画 GIF 会动,屏幕中上方浮出,自动关闭/点击关闭,无黑框。
    与 toast 同一个表情包库;GIF 只在这只手上会动(toast 只显示首帧)。
    慎用:比 toast 侵入度高,一天别超过几次,重要时刻才用。
