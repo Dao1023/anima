@@ -23,11 +23,12 @@
 ```
 skills/task-brain/   女仆大脑(源,改动后同步到值班室)
 scripts/             探针 / 通知 / 监工
-frontend/            旧 Vue 面板(V5 起退役,留作参考)
-plugin/              旧 DSH 插件(V5 起退役,留作参考)
 docs/                设计文档(导航见 docs/README.md)
 migration/           V4.2→V5 迁移快照(archive-snapshot.json)
 ```
+
+V4.2 的插件、Vue 面板、dashboard/widget 脚本已整体删除——git 历史就是博物馆,
+想看尸体 `git log --oneline -- plugin frontend`。
 
 ## 历史
 

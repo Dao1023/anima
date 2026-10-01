@@ -1,5 +1,0 @@
-# dsh-anima bundle patch:向会话注入档案工具插件(顶层必须为 patch 条目数组)
-# lib/index.js 相对本文件解析(锚定在 patch 文件旁)
-- insert:
-    - id: dsh-anima
-      name: ./lib/index.js
