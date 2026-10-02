@@ -151,16 +151,7 @@ try {
       exit 0
     }
 
-    'handover' {
-      # 交接班:列出本项目最近的女仆会话(最新在前),供新女仆读上代日志继承现场
-      $base = 'C:\Users\Dao\.dsh\sessions\--C-Users-Dao-anima-home--'
-      Get-ChildItem $base -Directory | Sort-Object LastWriteTime -Descending |
-        Select-Object -First 5 |
-        ForEach-Object { "{0}`t{1}" -f $_.FullName, $_.LastWriteTime }
-      exit 0
-    }
-
-    default { Fail "unknown cmd '$Cmd' (use probe/face/screen/sense/say/toast/popup/log/handover)" }
+    default { Fail "unknown cmd '$Cmd' (use probe/face/screen/sense/say/toast/popup/log)" }
   }
 } catch {
   Fail "unexpected: $($_.Exception.Message)"
