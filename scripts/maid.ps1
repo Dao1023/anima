@@ -1,4 +1,4 @@
-﻿# maid.ps1 · 女仆的身体的唯一入口(感官与喉舌;企微/邮件/TTS 服务为外部直连)
+# maid.ps1 · 女仆的身体的唯一入口(感官与喉舌;企微/邮件/TTS 服务为外部直连)
 # 子命令:probe(在不在) / face(眼睛) / screen(屏幕) / sense(综合) / say(嘴) / toast(通知) / popup(弹窗) / log(日志)
 # 契约:成功输出一行 JSON 且 exit 0;任何失败(含异常)输出 {"ok":false,"error":...} 且 exit 1。结果不许不看就当成功。
 param(
@@ -151,7 +151,16 @@ try {
       exit 0
     }
 
-    default { Fail "unknown cmd '$Cmd' (use probe/face/screen/sense/say/toast/popup/log)" }
+    'handover' {
+      # 交接班:列出本项目最近的女仆会话(最新在前),供新女仆读上代日志继承现场
+      $base = 'C:\Users\Dao\.dsh\sessions\--C-Users-Dao-anima-home--'
+      Get-ChildItem $base -Directory | Sort-Object LastWriteTime -Descending |
+        Select-Object -First 5 |
+        ForEach-Object { "{0}`t{1}" -f $_.FullName, $_.LastWriteTime }
+      exit 0
+    }
+
+    default { Fail "unknown cmd '$Cmd' (use probe/face/screen/sense/say/toast/popup/log/handover)" }
   }
 } catch {
   Fail "unexpected: $($_.Exception.Message)"
