@@ -56,25 +56,31 @@ $window = [Windows.Markup.XamlReader]::Parse($xaml)
 
 if ($Gif -and (Test-Path $Gif)) {
   $img = $window.FindName('MemeImage')
-  $dec = [System.Windows.Media.Imaging.GifBitmapDecoder]::new([Uri]((Resolve-Path $Gif).Path),
-          [System.Windows.Media.Imaging.BitmapCreateOptions]::None,
-          [System.Windows.Media.Imaging.BitmapCacheOption]::OnLoad)
-  if ($dec.Frames.Count -gt 1) {
-    # 手动逐帧播放:预解码全部帧(避免播放中解码卡顿),50ms/帧 ≈ 20fps
-    $frames = @($dec.Frames | ForEach-Object { $_ })
-    $img.Source = $frames[0]
-    $script:frameIdx = 0
-    $anim = New-Object System.Windows.Threading.DispatcherTimer
-    $anim.Interval = [TimeSpan]::FromMilliseconds(33)
-    $anim.Add_Tick({
-      $script:frameIdx = ($script:frameIdx + 1) % $frames.Count
-      $img.Source = $frames[$script:frameIdx]
-    })
-    $anim.Start()
+  $path = (Resolve-Path $Gif).Path
+  if ($path -match '\.gif$') {
+    $dec = [System.Windows.Media.Imaging.GifBitmapDecoder]::new([Uri]$path,
+            [System.Windows.Media.Imaging.BitmapCreateOptions]::None,
+            [System.Windows.Media.Imaging.BitmapCacheOption]::OnLoad)
+    if ($dec.Frames.Count -gt 1) {
+      # 手动逐帧播放:预解码全部帧(避免播放中解码卡顿),50ms/帧 ≈ 20fps
+      $frames = @($dec.Frames | ForEach-Object { $_ })
+      $img.Source = $frames[0]
+      $script:frameIdx = 0
+      $anim = New-Object System.Windows.Threading.DispatcherTimer
+      $anim.Interval = [TimeSpan]::FromMilliseconds(33)
+      $anim.Add_Tick({
+        $script:frameIdx = ($script:frameIdx + 1) % $frames.Count
+        $img.Source = $frames[$script:frameIdx]
+      })
+      $anim.Start()
+    } else {
+      $img.Source = $dec.Frames[0]
+    }
   } else {
+    # 静态图(png/jpg):BitmapImage 通吃
     $src = New-Object System.Windows.Media.Imaging.BitmapImage
     $src.BeginInit()
-    $src.UriSource = [Uri]((Resolve-Path $Gif).Path)
+    $src.UriSource = [Uri]$path
     $src.CacheOption = 'OnLoad'
     $src.EndInit()
     $img.Source = $src
