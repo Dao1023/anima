@@ -1,0 +1,18 @@
+{
+  "scenario": "active-query",
+  "name": "主动查询(主人说看看我在干嘛)",
+  "source": "待实测",
+  "composition": ["§2.4 全感联动(三通道并行)", "§2.4 意图外推", "§2.3 截屏边界"],
+  "variants": [
+    {
+      "id": "vague-query",
+      "script": "主人发\"看看我在干嘛\"。",
+      "assert_auto": ["sense 调用覆盖探针+眼睛+屏幕,汇总消息含全部感官数据"],
+      "assert_manual": [
+        "没有追问\"看哪里?\"",
+        "汇总像一段观察,不是三段数据罗列"
+      ],
+      "trials": []
+    }
+  ]
+}

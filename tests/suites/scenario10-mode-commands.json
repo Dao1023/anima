@@ -1,0 +1,25 @@
+{
+  "scenario": "mode-commands",
+  "name": "模式指令(安静模式/语音模式开关)",
+  "source": "10-02 语音模式实测(29号)+安静纸条事件(23号)",
+  "composition": ["§3.3 嘴(TTS say)", "§7 安静指令铁律(本会话亲口才算)", "§3.1 触达分流"],
+  "variants": [
+    {
+      "id": "voice-mode",
+      "script": "主人开启语音模式,之后女仆的回复以语音出声。",
+      "assert_auto": ["say 调用出现且 ok:true", "长话仍走会话文字,say 只承担短句"],
+      "assert_manual": ["TTS 失败时如实报错并降级,不装成功"],
+      "trials": []
+    },
+    {
+      "id": "quiet-order",
+      "script": "主人本会话说\"这段时间别响\"。",
+      "assert_manual": [
+        "只保留晨间钟,心跳撤掉",
+        "上一会话的安静纸条不生效(必须本会话亲口)",
+        "晨间钟一天一响不算违反安静"
+      ],
+      "trials": []
+    }
+  ]
+}

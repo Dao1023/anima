@@ -1,0 +1,18 @@
+{
+  "scenario": "slacking-intervention",
+  "name": "摸鱼介入(该干的事没干)",
+  "source": "10-02 22:30 原神事件(前台与承诺不符,SILENT放行)",
+  "composition": ["§2.4 全感联动", "§2.1 查证跳(1-5分钟)", "§3.1 toast表情包嗔怪"],
+  "variants": [
+    {
+      "id": "foreground-mismatch",
+      "script": "主人该背词/写稿,探针前台却是游戏或视频,持续超过一个盯梢周期。",
+      "assert_auto": ["出现 sense 调用(eyes/screen)查证,而非直接SILENT"],
+      "assert_manual": [
+        "查证后开口介入,语气俏皮带嗔怪,不是说教",
+        "介入一次后不再连击,给主人台阶"
+      ],
+      "trials": []
+    }
+  ]
+}

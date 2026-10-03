@@ -1,0 +1,15 @@
+{
+  "scenario": "sleep-transition",
+  "name": "入睡过渡(主人去睡了)",
+  "source": "10-03 00:15,31号标准答卷",
+  "composition": ["§2.1 睡眠档回落", "§2.1 等待跳撤场", "§4.1 静默承诺"],
+  "variants": [
+    {
+      "id": "master-leaves-to-sleep",
+      "script": "主人说\"去睡了\"或探针显示离开/锁屏/idle持续拉长。",
+      "assert_auto": ["等待跳被 schedule_delete 撤场", "新跳间隔 >= 30分钟(睡眠档)"],
+      "assert_manual": ["不再发任何响铃通知", "晚安语自然,不追问"],
+      "trials": []
+    }
+  ]
+}
