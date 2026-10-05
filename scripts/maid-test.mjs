@@ -51,25 +51,27 @@ function parseEvents(logText) {
 }
 
 // ---------- L1 断言原语 ----------
-// R1 (§0/铁律): 问句出口,10 秒跳跟上
-function checkQuestionWaitHop(events, { withinEvents = 4, maxSeconds = 15 } = {}) {
+// R1 (§1步骤4/铁律): 问句出口,下一跳的字条必须安排"查回话"
+function checkQuestionWaitHop(events, _opts) {
+  const REPLY_RE = /回话|回音|答案|追问|报数|回复|等到|等主人/
   const results = []
   for (let i = 0; i < events.length; i++) {
     const ev = events[i]
     if (ev.type !== 'message') continue
     if (!/[？？]/.test(ev.text)) continue
-    let found = null
-    for (let j = i + 1; j <= i + withinEvents && j < events.length; j++) {
-      const e = events[j]
-      if (e.type === 'schedule_create' && e.after <= maxSeconds) { found = e; break }
-      if (e.type === 'message') break // 下一条消息出来还没布跳,反射失败
+    // 找这条问句之后的第一条 schedule_create
+    let next = null
+    for (let j = i + 1; j < events.length; j++) {
+      if (events[j].type === 'schedule_create') { next = events[j]; break }
+      if (events[j].type === 'message' && /[？？]/.test(events[j].text)) break // 下一条问句先出现,仍算未安排
     }
     const q = (ev.text.match(/[^\n。！！]{1,30}[？？]/) || ['?'])[0]
-    results.push({ question: q.trim(), seq: ev.seq, ok: !!found, evidence: found ? `after=${found.after}s "${found.title}"` : 'no wait-hop followed' })
+    const ok = !!(next && REPLY_RE.test(next.title + next.prompt))
+    results.push({ question: q.trim(), seq: ev.seq, ok, evidence: next ? `下一跳 after=${next.after}s "${next.title}"` : '问句之后没有再定跳' })
   }
   const asked = results.length
   const passed = results.filter(r => r.ok).length
-  return { name: 'R1 问句→10秒跳 (§0/铁律)', ok: asked === 0 ? 'N/A' : passed === asked, asked, passed, details: results }
+  return { name: 'R1 问句→下一跳安排查回话 (§1步骤4/铁律)', ok: asked === 0 ? 'N/A' : passed === asked, asked, passed, details: results }
 }
 
 // R2 (§1): 定跳留痕——≥60s 的跳,字条必须含档位标注
