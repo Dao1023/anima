@@ -74,11 +74,11 @@ function checkQuestionWaitHop(events, _opts) {
   return { name: 'R1 问句→下一跳安排查回话 (§1步骤4/铁律)', ok: asked === 0 ? 'N/A' : passed === asked, asked, passed, details: results }
 }
 
-// R2 (§1): 定跳留痕——≥60s 的跳,字条必须含档位标注
+// R2 (§1): 定闹钟留痕——≥60s 的闹钟,字条必须写明理由(档/为了/睡到/盯/等/查)
 function checkTierAnnotation(events, { minSeconds = 60 } = {}) {
   const creates = events.filter(e => e.type === 'schedule_create' && e.after >= minSeconds)
-  const bad = creates.filter(e => !/档/.test(e.title + e.prompt))
-  return { name: `R2 定跳留痕 (§1): ≥${minSeconds}s 的跳须含档位`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `after=${b.after}s "${b.title}"`) }
+  const bad = creates.filter(e => !/档|为了|睡到|盯|等|查|窗口|劝睡/.test(e.title + e.prompt))
+  return { name: `R2 闹钟留痕 (§1步骤5): ≥${minSeconds}s 的闹钟须有指向/理由`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `after=${b.after}s "${b.title}"`) }
 }
 
 // R3 (§2.1 防死循环): 相邻两跳完全相同(同间隔且中间无消息动作)= 死循环
