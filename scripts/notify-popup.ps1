@@ -103,8 +103,7 @@ $window.Add_Loaded({
   $window.Left = ($wa.Right - $window.ActualWidth) / 2
   $window.Top = $wa.Top + 80
 })
-# 点卡片任意处或点 ✕ 都关闭
-$window.Add_MouseDown({ $window.Close() })
+# 只有 ✕ 能关闭(点卡片/点表情包都不关——永驻模式的意义就在这)
 $window.FindName('CloseBtn').Add_MouseLeftButtonUp({ $window.Close() })
 
 # 原生消息循环全速泵帧(手摇泵 sleep+Invoke 有开销,帧率上不去)
