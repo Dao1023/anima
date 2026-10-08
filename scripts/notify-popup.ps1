@@ -1,14 +1,15 @@
 # notify-popup.ps1 · 女仆的手(进阶):桌面动图弹窗
-# WPF 无边框置顶窗,支持动画 GIF + 多行文字,自动关闭
+# WPF 无边框置顶窗,支持动画 GIF + 多行文字
+# -Seconds 0 = 永不自动关闭,直到点 ✕ 或点卡片才关(重要消息用)
 # 用法(必须 -STA,WPF 要求):
-#   powershell -STA -NoProfile -ExecutionPolicy Bypass -File notify-popup.ps1 -Text "主人~" -Gif "C:\...\meme.gif" -Seconds 8
-#   powershell -STA ... -File notify-popup.ps1 -Text "干得漂亮" -Meme "欸嘿"
+#   powershell -STA -NoProfile -ExecutionPolicy Bypass -File notify-popup.ps1 -Text "主人~" -Meme "欸嘿" -Seconds 8
+#   powershell -STA ... -File notify-popup.ps1 -Text "重要!" -Meme "夸" -Seconds 0
 param(
   [Parameter(Mandatory)][string]$Text,
   [string]$Title = '女仆',
   [string]$Gif = '',
   [string]$Meme = '',      # 关键词,从 ~/.anima/memes 挑,同 notify-toast
-  [int]$Seconds = 10
+  [int]$Seconds = 10       # 0 = 永驻,点 ✕ 才关
 )
 
 $ErrorActionPreference = 'Stop'
@@ -34,16 +35,24 @@ $xaml = @"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
         Topmost="True" ShowInTaskbar="False" SizeToContent="WidthAndHeight">
-  <Border Background="#F2FFFFFF" CornerRadius="14" Padding="18,14"
-          BorderBrush="#FFD8B4E8" BorderThickness="1.5">
-    <StackPanel>
-      <TextBlock x:Name="TitleText" Text="$Title" FontSize="12" Foreground="#FF9C6BB3"
-                 FontWeight="SemiBold" Margin="0,0,0,6"/>
-      <Image x:Name="MemeImage" MaxWidth="240" MaxHeight="240" Stretch="Uniform"/>
-      <TextBlock x:Name="BodyText" Text="$Text" FontSize="14" Foreground="#FF3A3A3A"
-                 TextWrapping="Wrap" MaxWidth="260" Margin="0,6,0,0"/>
-    </StackPanel>
-  </Border>
+  <Grid>
+    <Border Background="#F2FFFFFF" CornerRadius="14" Padding="18,14"
+            BorderBrush="#FFD8B4E8" BorderThickness="1.5">
+      <StackPanel>
+        <TextBlock x:Name="TitleText" Text="$Title" FontSize="12" Foreground="#FF9C6BB3"
+                   FontWeight="SemiBold" Margin="0,0,0,6"/>
+        <Image x:Name="MemeImage" MaxWidth="240" MaxHeight="240" Stretch="Uniform"/>
+        <TextBlock x:Name="BodyText" Text="$Text" FontSize="14" Foreground="#FF3A3A3A"
+                   TextWrapping="Wrap" MaxWidth="260" Margin="0,6,0,0"/>
+      </StackPanel>
+    </Border>
+    <Border x:Name="CloseBtn" Background="#E8FFFFFF" CornerRadius="9" Width="22" Height="22"
+            HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,6,6,0"
+            Cursor="Hand" ToolTip="点这里关闭">
+      <TextBlock Text="✕" FontSize="11" Foreground="#FF9C6BB3"
+                 HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
+  </Grid>
 </Window>
 "@
 
@@ -94,16 +103,19 @@ $window.Add_Loaded({
   $window.Left = ($wa.Right - $window.ActualWidth) / 2
   $window.Top = $wa.Top + 80
 })
-# 点一下就关(不打扰)
+# 点卡片任意处或点 ✕ 都关闭
 $window.Add_MouseDown({ $window.Close() })
+$window.FindName('CloseBtn').Add_MouseLeftButtonUp({ $window.Close() })
 
 # 原生消息循环全速泵帧(手摇泵 sleep+Invoke 有开销,帧率上不去)
 $window.Show()
 
-$autoClose = New-Object System.Windows.Threading.DispatcherTimer
-$autoClose.Interval = [TimeSpan]::FromSeconds($Seconds)
-$autoClose.Add_Tick({ $window.Close() })
-$autoClose.Start()
+if ($Seconds -gt 0) {
+  $autoClose = New-Object System.Windows.Threading.DispatcherTimer
+  $autoClose.Interval = [TimeSpan]::FromSeconds($Seconds)
+  $autoClose.Add_Tick({ $window.Close() })
+  $autoClose.Start()
+}
 
 $app = New-Object System.Windows.Application
 $app.ShutdownMode = 'OnMainWindowClose'
