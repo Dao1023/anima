@@ -12,10 +12,10 @@
 
 | 件 | 职责 |
 |---|---|
-| DSH 原生 schedule | 闹钟:每日晨间钟 + 女仆自排的心跳,到点 follow-up 唤醒值班室会话 |
+| DSH 原生 schedule | 闹钟:一条 15 分钟周期钟当底噪(每跳重写字条),到点 follow-up 唤醒值班室会话 |
 | `C:\Users\Dao\anima-home\ledger\tasks.md` | **账本**:任务 + 长期备注的唯一真相,git 管历史 |
 | `skills/task-brain/` | 女仆大脑:醒来流程 / 判定协议 / 触达方式(装在值班室 `.agents/skills/`) |
-| `scripts/` | 手脚:sense-master 探针、notify-toast/popup 通知、maid-log 监工日志 |
+| `scripts/` | 手脚:`maid.ps1` 五个感官(探针/眼睛/屏幕/嘴/弹窗)、`maid-log.mjs` 监工日志、`maid-test.mjs` L1 验收评估器 |
 | `~\.anima\` | 遗产:memes 表情包(在用)+ archive.db.retired(退役档案) |
 
 ## 仓库结构
