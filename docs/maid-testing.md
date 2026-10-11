@@ -30,6 +30,10 @@ node scripts/maid-test.mjs l1 --session C:\Users\Dao\.dsh\sessions\--C-Users-Dao
 
 # 列出可测会话
 node scripts/maid-test.mjs list
+
+# 手册自身的静态体检（重复概念/近似重复句/孤儿引用/废机制残留/双副本一致）
+# 语义与阈值见 maintenance.md「audit 的语义：棘轮，不是理想值」
+node scripts/maid-test.mjs audit
 ```
 
 当前 L1 断言原语（新增断言往 maid-test.mjs 加 check 函数）：
