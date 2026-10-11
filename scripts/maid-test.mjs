@@ -131,20 +131,33 @@ function checkNoIdenticalHops(events) {
   return { name: 'R3 每跳必须留痕 (§1步骤5): 排了钟的那一跳必须有台词/值班短记', ok: bad.length === 0, bad }
 }
 
-// R4 (§1步骤5): 默认节奏固定 15 分钟(900s)——偏离必须注明是三种例外之一
-//   ①入睡/定点 ②外出/在途 → 30 分钟 ③时刻表节点或主人指定的时刻(at 定点);60 秒自救不管辖
-function checkFlatCadence(events, { defaultSeconds = 900 } = {}) {
-  const EXCUSE_RE = /外出|在途|不在|睡|定点|主人说|主人指定|放行|别响|晨间|窗口/
-  const AT_RE = /\d{1,2}:\d{2}|明早|明晨|窗口|睡|定点|主人说/
-  const creates = events.filter(e => e.type === 'schedule_create')
+// R4 (§1步骤5/睡眠安全): 生命线不断档的硬红线——「删了必须当场补」。
+//   节奏（睡多久/盯多密）由女仆自己定,15 分钟只是兜底,评估器不替她判断快慢;
+//   但删掉旧钟却不装新钟 = 生命线断,必须抓。at 钟响过要补这一条离线看不到
+//   (日志结束可能是因为那条 at 还挂着),所以只作 doctrine,不当断言。
+function checkFlatCadence(events) {
   const bad = []
-  for (const e of creates) {
-    if (e.kind === 'at') { if (!AT_RE.test(e.title + e.prompt)) bad.push(e); continue }
-    if (e.after < 120) continue
-    if (e.after === defaultSeconds || EXCUSE_RE.test(e.title + e.prompt)) continue
-    bad.push(e)
+  for (const ev of events) {
+    if (ev.type !== 'schedule_delete') continue
+    const sameTurn = events.some(x => x.type === 'schedule_create' && x.turn === ev.turn)
+    if (!sameTurn) bad.push({ seq: ev.seq, turn: ev.turn, id: ev.id || '?' })
   }
-  return { name: `R4 默认节奏固定 ${defaultSeconds}s (§1步骤5): 偏离须注明三种例外之一`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `seq=${b.seq} ${b.kind}/${b.after}s "${b.title}"`) }
+  const total = events.filter(e => e.type === 'schedule_create' || e.type === 'schedule_delete').length
+  return { name: 'R4 生命线不断档 (§1步骤5): 删了钟必须当场补上', ok: total === 0 ? 'N/A' : bad.length === 0, total, bad: bad.map(b => `seq=${b.seq} turn=${b.turn} 只删不建(删了 ${b.id})`) }
+}
+
+// 参考信息(不算断言):这次会话她自己挑了哪些节奏——15 分钟兜底占多少,其余各是什么
+function sumCadence(events) {
+  const bySecs = new Map()
+  let at = 0
+  for (const e of events) {
+    if (e.type !== 'schedule_create') continue
+    if (e.kind === 'at') { at++; continue }
+    bySecs.set(e.after, (bySecs.get(e.after) || 0) + 1)
+  }
+  const parts = [...bySecs.entries()].sort((a, b) => b[1] - a[1]).map(([s, n]) => `${s}s×${n}`)
+  if (at) parts.push(`at(定点)×${at}`)
+  return `节奏分布: ${parts.join(', ') || '(无)'}`
 }
 
 // ---------- 汇总 ----------
@@ -156,11 +169,12 @@ function runL1(sessionDir) {
     checkNoIdenticalHops(events),
     checkFlatCadence(events),
   ]
-  return { session: path.basename(sessionDir), checks }
+  return { session: path.basename(sessionDir), cadence: sumCadence(events), checks }
 }
 
 function printResult(r) {
   console.log(`\n=== ${r.session} ===`)
+  if (r.cadence) console.log(`  ${r.cadence}`)
   for (const c of r.checks) {
     console.log(`[${typeof c.ok === 'boolean' ? (c.ok ? 'PASS' : 'FAIL') : c.ok}] ${c.name}`)
     for (const d of c.details || []) console.log(`    ${d.ok ? '  ok ' : '  MISS'} seq=${d.seq} "${d.question}" → ${d.evidence}`)
