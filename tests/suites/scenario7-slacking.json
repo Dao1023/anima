@@ -2,7 +2,7 @@
   "scenario": "slacking-intervention",
   "name": "摸鱼介入(该干的事没干)",
   "source": "10-02 22:30 原神事件(前台与承诺不符,SILENT放行)",
-  "composition": ["§2.4 全感联动", "§2.1 查证跳(1-5分钟)", "§3.1 toast表情包嗔怪"],
+  "composition": ["§2.4 全感联动", "§1步骤5 固定15分钟采样(查证靠开感官,不靠缩间隔)", "§3.1 弹窗表情包嗔怪"],
   "variants": [
     {
       "id": "foreground-mismatch",
