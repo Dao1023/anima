@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // maid-log.mjs · 监工席工具:解码女仆会话日志(v4 = 拼接 zstd 帧,每帧内多行 JSONL)
-// 用法: node maid-log.mjs <会话目录或 .zstd 文件> [--all] [--grep 关键词]
+// 用法: node maid-log.mjs <会话目录或 .zstd 文件> [--all] [--grep 关键词] [--raw]
 //   默认显示 assistant 发言 + 关键事件;--all 全量;--grep 过滤
 import { zstdDecompressSync } from 'node:zlib'
 import { readFileSync, readdirSync } from 'node:fs'
@@ -38,6 +38,12 @@ while (i < buf.length) {
 }
 events.sort((a, b) => (a.seq ?? -1) - (b.seq ?? -1))
 
+// --raw:每行一个完整事件 JSON(不截断、不加装饰),给 maid-test.mjs 等机器消费者用
+if (args.includes('--raw')) {
+  for (const j of events) console.log(JSON.stringify(j))
+  process.exit(0)
+}
+
 console.error(`# ${file.split(/[\\/]/).slice(-2)[0]} · ${events.length} 事件`)
 for (const j of events) {
   const type = j.type ?? '?'
@@ -51,7 +57,7 @@ for (const j of events) {
       lines.push(`[${c.type}] ${c.text}`)
     }
   } else if (type === 'tool/result' || type === 'command/run' || showAll) {
-    lines.push(JSON.stringify(j.data).slice(0, 300))
+    lines.push(JSON.stringify(j.data ?? j ?? {}).slice(0, 300))
   }
   if (grep) lines = lines.filter(l => l.includes(grep))
   if (lines.length) {

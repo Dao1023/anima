@@ -3,6 +3,7 @@
 // 用法:
 //   node maid-test.mjs l1 --session <session-dir>     # 对单个会话跑反射层断言
 //   node maid-test.mjs l1 --all-sessions              # 对全部历史女仆会话跑离线回归
+//   node maid-test.mjs l1 --all-sessions --since 2026-10-06   # 只算新规矩之后的会话
 //   node maid-test.mjs list                           # 列出可测试的会话
 // 断言原语与 spec 映射见 docs/maid-testing.md
 import { execFileSync } from 'node:child_process'
@@ -13,38 +14,65 @@ const SESSIONS_BASE = 'C:\\Users\\Dao\\.dsh\\sessions\\--C-Users-Dao-anima-home-
 const SCRIPTS = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, '$1'))
 
 // ---------- 日志解析 ----------
-function readLog(sessionDir) {
-  return execFileSync('node', [path.join(SCRIPTS, 'maid-log.mjs'), sessionDir], { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 })
+// 走 maid-log.mjs --raw:每行一个完整事件,不截断(旧版靠解析人读文本,600 字符截断把
+// "state":"scheduled" 切掉,导致 144 次排钟只认出 1 次——2026-10-06 修)
+function readRawEvents(sessionDir) {
+  const text = execFileSync('node', [path.join(SCRIPTS, 'maid-log.mjs'), sessionDir, '--raw'], { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 })
+  const out = []
+  for (const line of text.split('\n')) {
+    const s = line.trim()
+    if (!s) continue
+    try { out.push(JSON.parse(s)) } catch { /* 截断行跳过 */ }
+  }
+  return out
 }
 
-function parseEvents(logText) {
-  const marker = /== (tool\/result\/tool|assistant\/message\/assistant) seq=(\d+) ==/g
-  const events = []
-  let m
-  const marks = []
-  while ((m = marker.exec(logText))) marks.push({ kind: m[1], seq: Number(m[2]), start: m.index, textStart: logText.indexOf('[text]', m.index) })
-  for (let i = 0; i < marks.length; i++) {
-    const end = i + 1 < marks.length ? marks[i + 1].start : logText.length
-    let text = logText.slice(marks[i].textStart, end).replace(/^\[text\]/, '').trim()
-    events.push({ ...marks[i], text })
-  }
-  // 从 tool/result 块中提取 schedule 事件
+// tool/result 的真实返回文本住在 data.message.content[].text 里(直接 JSON.stringify(data)
+// 会把引号转义成 \" ,正则匹配不到)
+function resultText(j) {
+  const content = j.data?.message?.content
+  if (!Array.isArray(content)) return ''
+  return content.filter(c => typeof c?.text === 'string').map(c => c.text).join('\n')
+}
+
+function parseEvents(rawEvents) {
   const out = []
-  for (const ev of events) {
-    if (ev.kind === 'assistant/message/assistant') {
-      out.push({ seq: ev.seq, type: 'message', text: ev.text })
+  for (const j of rawEvents) {
+    const seq = j.seq ?? -1
+    const turn = j.data?.turn ?? -1
+    const type = j.type ?? ''
+    if (type === 'assistant/message' && j.data?.message?.role === 'assistant') {
+      const content = j.data.message.content
+      const text = Array.isArray(content)
+        ? content.filter(c => c?.type === 'text' && typeof c.text === 'string').map(c => c.text).join('\n').trim()
+        : ''
+      out.push({ seq, turn, type: 'message', text })
       continue
     }
-    if (/"afterSeconds"\s*:\s*(\d+)/.test(ev.text) && /"state":"scheduled"/.test(ev.text)) {
-      const after = Number(ev.text.match(/"afterSeconds"\s*:\s*(\d+)/)[1])
-      const title = (ev.text.match(/"title":"([^"]*)"/) || [])[1] || ''
-      const prompt = (ev.text.match(/"prompt":"((?:[^"\\]|\\.)*)"/) || [])[1] || ''
-      out.push({ seq: ev.seq, type: 'schedule_create', after, title, prompt, text: ev.text })
+    if (type !== 'tool/result') continue
+    const blob = resultText(j)
+    if (!blob) continue
+    // 排闹钟结果(create / update 返回同一结构):
+    //   {"id":"schedule-…","kind":"every|at|after","title":…,"prompt":…,
+    //    "everySeconds":900 | "afterSeconds":60 | (at 档无秒数),"state":"scheduled"}
+    const kindM = blob.match(/"kind":"(every|at|after)"/)
+    if (kindM && /"state":"scheduled"/.test(blob)) {
+      const secsM = blob.match(/"everySeconds"\s*:\s*(\d+)/) || blob.match(/"afterSeconds"\s*:\s*(\d+)/)
+      out.push({
+        seq,
+        turn,
+        type: 'schedule_create',
+        kind: kindM[1],
+        after: secsM ? Number(secsM[1]) : 0,
+        id: (blob.match(/"id":"(schedule-[^"]+)"/) || [])[1] || '',
+        title: (blob.match(/"title":"((?:[^"\\]|\\.)*)"/) || [])[1] || '',
+        prompt: (blob.match(/"prompt":"((?:[^"\\]|\\.)*)"/) || [])[1] || '',
+        text: blob,
+      })
       continue
     }
-    if (/"deleted":true/.test(ev.text)) {
-      const id = (ev.text.match(/"id":"(schedule-[^"]+)"/) || [])[1] || ''
-      out.push({ seq: ev.seq, type: 'schedule_delete', id, text: ev.text })
+    if (/"deleted"\s*:\s*true/.test(blob)) {
+      out.push({ seq, turn, type: 'schedule_delete', id: (blob.match(/"id":"(schedule-[^"]+)"/) || [])[1] || '', text: blob })
     }
   }
   return out
@@ -74,32 +102,59 @@ function checkQuestionWaitHop(events, _opts) {
   return { name: 'R1 问句→下一跳安排查回话 (§1步骤4/铁律)', ok: asked === 0 ? 'N/A' : passed === asked, asked, passed, details: results }
 }
 
-// R2 (§1): 定闹钟留痕——≥60s 的闹钟,字条必须写明理由(档/为了/睡到/盯/等/查)
+// R2 (§1步骤5): 定闹钟留痕——每一条排钟(at 档也算)的**字条标题**必须能看出
+// 「什么时候醒 + 干什么」:含时间锚点(HH:MM / M-D / 明早 / 窗口 / 分钟…),
+// 且去掉锚点后还剩 ≥3 个字说事由。"noop"、"23:15 采样"这类空字条 = 违规。
 function checkTierAnnotation(events, { minSeconds = 60 } = {}) {
-  const creates = events.filter(e => e.type === 'schedule_create' && e.after >= minSeconds)
-  const bad = creates.filter(e => !/档|为了|睡到|盯|等|查|窗口|劝睡/.test(e.title + e.prompt))
-  return { name: `R2 闹钟留痕 (§1步骤5): ≥${minSeconds}s 的闹钟须有指向/理由`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `after=${b.after}s "${b.title}"`) }
+  const ANCHOR = /\d{1,2}:\d{2}|\d{1,2}-\d{1,2}|\d{1,2}\s*月\s*\d{1,2}|明早|明晨|明天|窗口|分钟|小时|今晚/g
+  const creates = events.filter(e => e.type === 'schedule_create' && (e.kind === 'at' || e.after >= minSeconds))
+  const bad = creates.filter(e => {
+    const note = (e.title || '').trim()
+    if (!note) return true
+    if (!ANCHOR.test(note)) return true
+    const rest = note.replace(ANCHOR, '').replace(/[\s\d()（）:：,，、。·\-—/【】\[\]]+/g, '')
+    return rest.length < 3
+  })
+  return { name: `R2 闹钟留痕 (§1步骤5): ≥${minSeconds}s/at 档的字条须写明「何时+干什么」`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `seq=${b.seq} ${b.kind}${b.after ? '/' + b.after + 's' : ''} "${b.title}"`) }
 }
 
-// R3 (§2.1 防死循环): 相邻两跳完全相同(同间隔且中间无消息动作)= 死循环
+// R3 (§1步骤5 节奏恒定·内容必须变): 以 turn 为一个"跳"——排了闹钟却一个字的台词/值班短记都没留
+// = 死循环(同一条 turn 里批量建多条闹钟不算两跳,旧版按事件相邻判定会误伤,2026-10-06 修)
 function checkNoIdenticalHops(events) {
+  const saidTurns = new Set(events.filter(e => e.type === 'message' && e.text).map(e => e.turn))
   const bad = []
-  for (let i = 1; i < events.length; i++) {
-    const a = events[i - 1], b = events[i]
-    if (a.type === 'schedule_create' && b.type === 'schedule_create' && a.after === b.after) {
-      bad.push({ seq: b.seq, after: b.after, title: b.title })
-    }
+  for (const e of events) {
+    if (e.type !== 'schedule_create') continue
+    if (saidTurns.has(e.turn)) continue
+    bad.push({ seq: e.seq, turn: e.turn, after: e.after, title: e.title })
   }
-  return { name: 'R3 严禁原地复读 (§2.1): 相邻同间隔跳 = 死循环', ok: bad.length === 0, bad }
+  return { name: 'R3 每跳必须留痕 (§1步骤5): 排了钟的那一跳必须有台词/值班短记', ok: bad.length === 0, bad }
+}
+
+// R4 (§1步骤5): 默认节奏固定 15 分钟(900s)——偏离必须注明是三种例外之一
+//   ①入睡/定点 ②外出/在途 → 30 分钟 ③时刻表节点或主人指定的时刻(at 定点);60 秒自救不管辖
+function checkFlatCadence(events, { defaultSeconds = 900 } = {}) {
+  const EXCUSE_RE = /外出|在途|不在|睡|定点|主人说|主人指定|放行|别响|晨间|窗口/
+  const AT_RE = /\d{1,2}:\d{2}|明早|明晨|窗口|睡|定点|主人说/
+  const creates = events.filter(e => e.type === 'schedule_create')
+  const bad = []
+  for (const e of creates) {
+    if (e.kind === 'at') { if (!AT_RE.test(e.title + e.prompt)) bad.push(e); continue }
+    if (e.after < 120) continue
+    if (e.after === defaultSeconds || EXCUSE_RE.test(e.title + e.prompt)) continue
+    bad.push(e)
+  }
+  return { name: `R4 默认节奏固定 ${defaultSeconds}s (§1步骤5): 偏离须注明三种例外之一`, ok: creates.length === 0 ? 'N/A' : bad.length === 0, total: creates.length, bad: bad.map(b => `seq=${b.seq} ${b.kind}/${b.after}s "${b.title}"`) }
 }
 
 // ---------- 汇总 ----------
 function runL1(sessionDir) {
-  const events = parseEvents(readLog(sessionDir))
+  const events = parseEvents(readRawEvents(sessionDir))
   const checks = [
     checkQuestionWaitHop(events),
     checkTierAnnotation(events),
     checkNoIdenticalHops(events),
+    checkFlatCadence(events),
   ]
   return { session: path.basename(sessionDir), checks }
 }
@@ -109,38 +164,44 @@ function printResult(r) {
   for (const c of r.checks) {
     console.log(`[${typeof c.ok === 'boolean' ? (c.ok ? 'PASS' : 'FAIL') : c.ok}] ${c.name}`)
     for (const d of c.details || []) console.log(`    ${d.ok ? '  ok ' : '  MISS'} seq=${d.seq} "${d.question}" → ${d.evidence}`)
-    for (const b of c.bad || []) console.log(`    违规: ${typeof b === 'string' ? b : `seq=${b.seq} after=${b.after}s "${b.title}"`}`)
+    for (const b of c.bad || []) console.log(`    违规: ${typeof b === 'string' ? b : `seq=${b.seq}${b.turn >= 0 ? ' turn=' + b.turn : ''} ${b.kind || ''}${b.after ? '/' + b.after + 's' : ''} "${b.title}"`}`)
+    if (typeof c.asked === 'number') console.log(`    (问到 ${c.asked} 句,安排了查回话 ${c.passed} 句)`)
     if (typeof c.total === 'number') console.log(`    (检查了 ${c.total} 条跳)`)
   }
 }
 
-function allSessions() {
-  return fs.readdirSync(SESSIONS_BASE)
+function allSessions(since = null) {
+  const rows = fs.readdirSync(SESSIONS_BASE)
     .filter(d => d.startsWith('session-'))
     .map(d => path.join(SESSIONS_BASE, d))
-    .map(p => ({ p, t: fs.statSync(p).mtimeMs }))
+    // 目录 mtime 只在增删文件时变;取目录内最新文件的 mtime 才是"这个会话最近被写过"
+    .map(p => ({ p, t: Math.max(...fs.readdirSync(p).map(f => fs.statSync(path.join(p, f)).mtimeMs)) }))
     .sort((a, b) => a.t - b.t)
-    .map(x => x.p)
+  // 裸日期按本地时间零点算(否则 Date.parse('2026-10-06') 是 UTC 零点 = 本地 08:00)
+  const cut = since ? Date.parse(/^\d{4}-\d{2}-\d{2}$/.test(since) ? since + 'T00:00:00' : since) : null
+  return rows.filter(x => !cut || x.t >= cut).map(x => x.p)
 }
 
 const args = process.argv.slice(2)
 const cmd = args[0]
+const sinceIdx = args.indexOf('--since')
+const since = sinceIdx > -1 ? args[sinceIdx + 1] : null
 if (cmd === 'list') {
-  allSessions().forEach(p => console.log(p))
+  allSessions(since).forEach(p => console.log(p))
 } else if (cmd === 'l1') {
   const idx = args.indexOf('--session')
   if (idx > -1) {
     printResult(runL1(args[idx + 1]))
   } else if (args.includes('--all-sessions')) {
-    const results = allSessions().map(p => { try { return runL1(p) } catch (e) { return { session: path.basename(p), checks: [{ name: 'parse', ok: `SKIP (${e.message.slice(0, 40)})` }] } } })
+    const results = allSessions(since).map(p => { try { return runL1(p) } catch (e) { return { session: path.basename(p), checks: [{ name: 'parse', ok: `SKIP (${e.message.slice(0, 40)})` }] } } })
     for (const r of results) printResult(r)
     // 总分
     let pass = 0, total = 0
     for (const r of results) for (const c of r.checks) if (typeof c.ok === 'boolean') { total++; if (c.ok) pass++ }
-    console.log(`\n=== 离线回归总分: ${pass}/${total} ===`)
+    console.log(`\n=== 离线回归总分: ${pass}/${total}${since ? ` (仅 ${since} 之后改动的会话)` : ''} ===`)
   } else {
-    console.log('用法: node maid-test.mjs l1 --session <dir> | --all-sessions')
+    console.log('用法: node maid-test.mjs l1 --session <dir> | --all-sessions [--since 2026-10-06]')
   }
 } else {
-  console.log('用法: node maid-test.mjs list | l1 [--session <dir> | --all-sessions]')
+  console.log('用法: node maid-test.mjs list | l1 [--session <dir> | --all-sessions [--since <日期>]]')
 }
