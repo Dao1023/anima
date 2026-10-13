@@ -18,6 +18,13 @@
 - **弹窗（popup）是默认视觉通道**：`-Seconds 0` 永驻（点 ✕ 才关），必须**后台启动**（`Start-Process powershell -WindowStyle Hidden`，0.2 秒即返、不阻塞女仆）。踩过的坑：曾把窗口级 `Add_MouseDown` 当关闭方式，导致"点表情包就关窗"——现在 ✕ 是唯一关闭路径。
 - **表情包解码**：按扩展名选解码器（`.jpg` 走 `JpegBitmapDecoder`）——曾无条件用 `GifBitmapDecoder`，遇到 jpg 直接 `FileFormatException`，静默不出图。
 - **语音（say）**：走本机 MOSS-TTS 服务（`moss-tts\tts-server.cmd`，端口 5050，音色 `maidvoice-001`）；全屏下唯一可靠通道；服务掉线要如实报 `ok:false`，并给了拉起命令。
+- **语音后台化（2026-10-13，动机见 L-12）**：
+  - 前台 `maid.ps1 say` 现在**发射即返回**（实测 ≈1.4-1.6 秒，返回 `queued:true`）；合成 + 播放交给后台工人，工人侧实测 **22-25 秒**（纯合成 ≈16 秒 + 播放 ≈6-9 秒）——这就是女仆原先必须干等的那 20 多秒。
+  - 机制：`say` 把任务写成 `%TEMP%\anima-voice\job-*.json` → `Start-Process powershell -WindowStyle Hidden` 拉起 `speak-worker.ps1` → 工人按任务文件 mtime **先进先出排队**（超 180 秒未处理视为崩掉的工人，清掉）→ 调 `speak.ps1` 合成并 `PlaySync` → 真实结果写进 `voice.log` + `last.json` → 删任务文件。
+  - 查证：`maid.ps1 voice` 返回 `pending`（还在排队的任务数）+ 最近 5 条记录（`ok / played / ms / chars / wav / error`，`ms` 不含排队等待）。`-Wait` 保留老的同步路径（`queued:false`）。
+  - 顺带修掉两个隐患：临时 wav 用完即删（此前 TEMP 堆了 88 个 `maid-speak-*.wav`）；`voice.log` 超 500KB 只留最后 200 行。
+  - 失败如实进日志：实测空文本 → `ok:false` + 子进程 error 原文。后台化**没有**削弱"不许假报成功"——它把真相从"前台返回值"挪到了 `voice.log`。
+- **PowerShell 坑（同一个坑踩了两次）**：变量名**大小写不敏感**。`speak-worker.ps1` 里参数 `$Job`（路径）与局部 `$job`（解析出的对象）是同一个变量，赋值把参数覆盖掉，随后的 `Get-Item -Path $Job` 直接崩——而且是隐藏窗口，前台什么都看不到。第一次是 `$Face`/`$face`（`Cannot convert value "System.String" to type SwitchParameter`）。**命名规矩：局部变量一律带后缀**（`$jobData` / `$faceOut` / `$screenOut` / `$probeOut`）。
 - **全屏判定**：以探针的 `foreground_proc` / 前台窗口为准；全屏 → 只用语音。
 
 ## 3. 感官实现（从 §2 剥离）

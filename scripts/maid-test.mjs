@@ -182,7 +182,8 @@ const SYMBOL_LIMITS = [
 ]
 
 // 篇幅棘轮:全文规模也不许再涨(与关键词棘轮同一段报)
-const LENGTH_RATCHET = { chars: 16000, lines: 355 }
+// 2026-10-13 上调:语音改后台发射(say 即返 + voice 查证 + 铁律澄清),手册新增约 400 字符
+const LENGTH_RATCHET = { chars: 16500, lines: 360 }
 const RATCHET_NOTE = '说明: 以上上限是棘轮基线(= 定稿手册的当前实测值),不是理想值;要放宽必须同步改 scripts/maid-test.mjs 里的 SYMBOL_LIMITS / LENGTH_RATCHET。'
 
 // 已废机制残留(出现即违规)。
