@@ -24,6 +24,11 @@
   - 查证：`maid.ps1 voice` 返回 `pending`（还在排队的任务数）+ 最近 5 条记录（`ok / played / ms / chars / wav / error`，`ms` 不含排队等待）。`-Wait` 保留老的同步路径（`queued:false`）。
   - 顺带修掉两个隐患：临时 wav 用完即删（此前 TEMP 堆了 88 个 `maid-speak-*.wav`）；`voice.log` 超 500KB 只留最后 200 行。
   - 失败如实进日志：实测空文本 → `ok:false` + 子进程 error 原文。后台化**没有**削弱"不许假报成功"——它把真相从"前台返回值"挪到了 `voice.log`。
+  - 已知锐边（2026-10-15 复查）：排队逻辑里"超 180 秒未处理视为尸体清掉"按任务文件 mtime 计龄，而工人做完才删自己的文件——**长句合成+播放超 180 秒时，后到的工人会把它当尸体清掉并插队**，后果是两段语音重叠出声（不丢话）。修复方向：任务文件加"已认领"标记，或阈值提到 600 秒。
+- **环境与加速（2026-10-15）**：
+  - moss-tts 的 Python 环境已用 **uv 重建**（`uv venv --python 3.13` + `uv pip install -e ./server`），旧 venv（pip + Python 3.13.5）已删，包清单备份在 `moss-tts\venv-cpu-backup.txt`。环境漂移注意：仓库里的 `environment.yml`（conda 版，含 pynini/WeTextProcessing）**不是**实际安装路径；WeTextProcessing 缺失只导致文本规整降级为 robust（警告非致命，新旧环境一致）。
+  - **XPU 实测结论：不值得**。机器无 N 卡，只有 Intel Arc 130T 核显（Xe-LPG，**无 XMX 单元**）。装 `torch==2.7.0+xpu` 后推理确实跑在核显上（GPU 利用率 16-34%），但 19 字同句合成 warm ≈18.3-18.6s（fp16/bf16 无差别），**比 CPU 的 ≈16s 还略慢**——瓶颈是自回归逐 token 解码的小算子调度，不是算力。**别再试第二次**。留用 XPU 的唯一收益是合成时不占 CPU + 服务启动 ~7s（CPU 版 ~110s）；`tts-server.cmd` 已改为 `--device auto --dtype float16`，server.py 的 `--device auto` 补丁按 xpu→cuda→cpu 自动探测。
+  - **上游 server.py 原本写死 CPU**（原 L189 `DEVICE="cpu"` + L1296 强制忽略 `--device`），已打最小补丁启用自动探测；补丁在 moss-tts 仓库（上游 clone），升级上游时注意别被冲掉。
 - **PowerShell 坑（同一个坑踩了两次）**：变量名**大小写不敏感**。`speak-worker.ps1` 里参数 `$Job`（路径）与局部 `$job`（解析出的对象）是同一个变量，赋值把参数覆盖掉，随后的 `Get-Item -Path $Job` 直接崩——而且是隐藏窗口，前台什么都看不到。第一次是 `$Face`/`$face`（`Cannot convert value "System.String" to type SwitchParameter`）。**命名规矩：局部变量一律带后缀**（`$jobData` / `$faceOut` / `$screenOut` / `$probeOut`）。
 - **全屏判定**：以探针的 `foreground_proc` / 前台窗口为准；全屏 → 只用语音。
 
