@@ -20,3 +20,13 @@ models/silero-vad/
 output/
 ear-env/
 *.log
+
+# 媒体/样音不入库
+models/ear-test.wav
+*.wav
+*.mp3
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
