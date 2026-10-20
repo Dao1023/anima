@@ -46,3 +46,14 @@
 - `maid-log.mjs --raw`（2026-10-12 新增）：每行一个完整事件 JSON、**不截断**，给 `maid-test.mjs` 等机器消费者用。人读模式每行截断 600 字符——正是这个截断让旧评估器把 `"state":"scheduled"` 切掉，144 次排钟只认出 1 次（详见 `maid-testing.md` 的"解析层"）。
 - schedule 工具的返回结构：`{"id":"schedule-…","kind":"every|at|after","title":…,"prompt":…,"everySeconds":900,"state":"scheduled"}`；`create` 与 `update` 返回同一结构。真实文本住在 `data.message.content[].text` 里，直接 `JSON.stringify(data)` 会把引号转义成 `\"`，正则匹配不到。
 - 事件里有 `turn` 字段（`tool/result.data.turn`）→ 评估器用 **turn = 一跳** 来判定"这跳有没有留痕"。
+
+## 5. 耳朵（24/7 听感，2026-10-20 立项）
+
+- **栈**：sherpa-onnx 1.13.8 + streaming-zipformer-zh-int8-2025-06-30（中文专用，~160MB）+ silero VAD（2.22MB）；uv 环境 ar-env，模型在 models\。
+- **模型教训**：2023-02-20 双语 zipformer 中文有叠字毛病（"按按替替"）——离线 wav 复现实锤后换 2025-06-30 中文专模型，零叠字。small-bilingual-2023-02-16 在 HF 上不存在（401）。下载走 hf-mirror，GitHub release 直连会 reset。
+- **架构**：scripts\ear-daemon.py（WASAPI 16kHz 共享模式→silero VAD 切段：静音 0.8s 断句、前捞 0.3s、<0.25s 丢弃、单段上限 30s→整段流式识别→句尾追加 %TEMP%\anima-ear\ear.log 一行 JSON {ts,text}，300KB 封顶留 200 行）。空闲 CPU ~3%（VAD 化之前全流识别是 20%）。
+- **sherpa-onnx 1.13.8 API 备忘**：OnlineRecognizer.from_transducer(平铺参数)；FeatureExtractorConfig(sampling_rate=)；EndpointConfig(rule1_min_trailing_silence=…) 全名；类在 sherpa_onnx.online_recognizer 子模块；OnlineModelConfig 无 provider；VadModel.create(config)、ad.is_speech(frame)、ad.window_size() 是方法。
+- **GPU/NPU 结论**：sherpa-onnx Windows 只有 CPU/CUDA，无 DirectML/NPU；Arc 130T 核显帮不上（同 TTS XPU 教训）。省性能靠 VAD 化。
+- **常驻**：启动文件夹快捷方式 nima-ear.lnk → ar-env\Scripts\pythonw.exe ear-daemon.py（schtasks ONLOGON 非管理员被拒）。暂停开关 = %TEMP%\anima-ear\PAUSED 文件存在即丢弃不记。
+- **前台接口**：maid.ps1 ear -Last N / -Since -Until / -Text 关键词 / -Pause / -Resume，返回 {ok,paused,count,entries}。
+- **已知锐边**：daemon 与 TTS 同麦共享模式无冲突（WASAPI shared 多进程可同录）；设备按名字含"智音"匹配，换 USB 麦要改 --name。

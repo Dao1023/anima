@@ -8,6 +8,7 @@ param(
   [switch]$Face, [switch]$Screen,
   [string]$Text = '', [string]$Meme = '', [string]$Title = '女仆',
   [int]$Seconds = 10, [string]$Gif = '', [string]$OutFile = '',
+  [int]$Last = 10, [string]$Since = '', [string]$Until = '', [switch]$Pause, [switch]$Resume,
   [switch]$NoPlay, [switch]$Silent, [switch]$Long, [string]$Session = '',
   [string]$Voice = 'maidvoice-001', [switch]$Wait
 )
@@ -149,6 +150,39 @@ try {
       }
       $pending = @(Get-ChildItem -Path (Join-Path $logDir 'job-*.json') -ErrorAction SilentlyContinue).Count
       Write-Output (@{ ok = $true; cmd = 'voice'; pending = $pending; entries = $entries } | ConvertTo-Json -Compress -Depth 5)
+      exit 0
+    }
+
+    # ---- 耳朵(ear.log 只读账本 + 暂停/恢复) --------------------------------
+    'ear' {
+      $earDir = Join-Path $env:TEMP 'anima-ear'
+      $pauseFile = Join-Path $earDir 'PAUSED'
+      if ($Pause) {
+        New-Item -ItemType File -Force -Path $pauseFile | Out-Null
+        Write-Output (@{ ok = $true; cmd = 'ear'; paused = $true } | ConvertTo-Json -Compress)
+        exit 0
+      }
+      $pausedNow = Test-Path $pauseFile
+      if ($Resume) {
+        Remove-Item $pauseFile -ErrorAction SilentlyContinue
+        Write-Output (@{ ok = $true; cmd = 'ear'; paused = $false } | ConvertTo-Json -Compress)
+        exit 0
+      }
+      $entries = @()
+      $log = Join-Path $earDir 'ear.log'
+      if (Test-Path $log) {
+        $lines = @(Get-Content $log -Tail 500 -Encoding UTF8)
+        if ($Last -gt 0 -and $Last -lt 500) { $lines = @(Get-Content $log -Tail $Last -Encoding UTF8) }
+        foreach ($l in $lines) {
+          if (-not $l.Trim()) { continue }
+          try { $e = $l | ConvertFrom-Json } catch { continue }
+          if ($Since -and [datetime]$e.ts -lt [datetime]$Since) { continue }
+          if ($Until -and [datetime]$e.ts -gt [datetime]$Until) { continue }
+          if ($Text -and $e.text -notmatch [regex]::Escape($Text)) { continue }
+          $entries += $e
+        }
+      }
+      Write-Output (@{ ok = $true; cmd = 'ear'; paused = $pausedNow; count = $entries.Count; entries = $entries } | ConvertTo-Json -Compress -Depth 5)
       exit 0
     }
 

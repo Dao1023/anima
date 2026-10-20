@@ -9,3 +9,14 @@ scripts/master.json
 scripts/.frame*.jpg
 scripts/face-*.jpg
 scripts/.screen.jpg
+
+# 模型文件太大(单文件最大 173MB,超 GitHub 100MB 硬上限),只挡大块头;下载方式见 models/README.md
+models/sherpa-onnx-streaming-zipformer-*/
+models/silero-vad/
+*.tar.bz2
+
+# 本地备份与运行产物
+*.bak-*
+output/
+ear-env/
+*.log
